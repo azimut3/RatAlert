@@ -1,6 +1,6 @@
-package com.iei.ratallert.repository;
+package com.iei.ratallert.database.repository;
 
-import com.iei.ratallert.data.Stat;
+import com.iei.ratallert.database.entities.Stat;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

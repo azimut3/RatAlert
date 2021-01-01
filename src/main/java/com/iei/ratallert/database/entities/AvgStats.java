@@ -1,4 +1,4 @@
-package com.iei.ratallert.data;
+package com.iei.ratallert.database.entities;
 
 import javax.persistence.Entity;
 
