@@ -14,7 +14,7 @@ public class StatsService {
     StatsRepository<Stat> statsRepository;
 
     public void save(Stat stat) {
-        log.debug("Saving stat: " + stat);
+        log.info("Saving stat: " + stat);
         statsRepository.saveAndFlush(stat);
     }
 }

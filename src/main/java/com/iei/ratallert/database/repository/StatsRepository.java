@@ -6,6 +6,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StatsRepository <T extends Stat> extends JpaRepository<Stat, Long> {
 
-    T findByName(String name);
-
 }

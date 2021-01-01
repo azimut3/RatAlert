@@ -4,10 +4,8 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.annotation.processing.Generated;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -15,6 +13,7 @@ import java.util.Date;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Stat {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private Double roomHumidity;
     private Double roomTemperature;
@@ -29,4 +28,10 @@ public class Stat {
         }
     }
 
+    public Stat(Double roomHumidity, Double roomTemperature, Double roomAirQualityValue, String roomAirQualityLevel) {
+        this.roomHumidity = roomHumidity;
+        this.roomTemperature = roomTemperature;
+        this.roomAirQualityValue = roomAirQualityValue;
+        this.roomAirQualityLevel = roomAirQualityLevel;
+    }
 }
