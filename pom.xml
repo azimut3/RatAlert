@@ -12,10 +12,12 @@
     <artifactId>rat-alert</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>RatAlert</name>
-    <description>Enviroment monitoring app</description>
+    <description>Environment monitoring app</description>
 
     <properties>
         <java.version>15</java.version>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
     </properties>
 
     <dependencies>
