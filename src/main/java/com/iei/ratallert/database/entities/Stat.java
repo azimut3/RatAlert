@@ -1,5 +1,6 @@
 package com.iei.ratallert.database.entities;
 
+import com.iei.ratallert.logic.LifeQualityData;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
@@ -17,21 +18,45 @@ public class Stat {
     private Long id;
     private Double roomHumidity;
     private Double roomTemperature;
-    private Double roomAirQualityValue;
+
+    private Double roomAirQualityPpmValue;
+    @Setter(AccessLevel.NONE)
     private String roomAirQualityLevel;
     @Setter(AccessLevel.NONE)
+
     private Date creationDate;
 
     public Stat(){
         if(creationDate == null){
             creationDate = new Date();
         }
+
+        if(roomAirQualityLevel == null && roomAirQualityPpmValue != null) {
+            roomAirQualityLevel = getAirQualityLevel(roomAirQualityPpmValue);
+        }
     }
 
-    public Stat(Double roomHumidity, Double roomTemperature, Double roomAirQualityValue, String roomAirQualityLevel) {
-        this.roomHumidity = roomHumidity;
-        this.roomTemperature = roomTemperature;
-        this.roomAirQualityValue = roomAirQualityValue;
-        this.roomAirQualityLevel = roomAirQualityLevel;
+    public Stat(LifeQualityData lifeQualityData) {
+        this.roomHumidity = lifeQualityData.getHumidity();
+        this.roomTemperature = lifeQualityData.getTemperature();
+        this.roomAirQualityPpmValue = lifeQualityData.getAirQualityPpm();
+        this.roomAirQualityLevel = getAirQualityLevel(roomAirQualityPpmValue);
+    }
+
+    public static String getAirQualityLevel(Double airQualityPpmValue){
+
+        if(airQualityPpmValue <= 50.){
+            return "GOOD";
+        } else if(airQualityPpmValue <= 100.){
+            return "Moderate";
+        } else if(airQualityPpmValue <= 150.){
+            return "Unhealthy for SG";
+        } else if(airQualityPpmValue <= 200.){
+            return "Unhealthy";
+        }else if(airQualityPpmValue <= 300.){
+            return "Very Unhealthy";
+        } else {
+            return "Hazardous";
+        }
     }
 }
