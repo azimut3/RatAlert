@@ -4,6 +4,7 @@ import com.iei.ratallert.logic.LifeQualityData;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import javax.annotation.processing.Generated;
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.Date;
 
 @Entity
 @Data
+@Accessors(chain = true)
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Stat {
     @Id
@@ -29,10 +31,6 @@ public class Stat {
     public Stat(){
         if(creationDate == null){
             creationDate = new Date();
-        }
-
-        if(roomAirQualityLevel == null && roomAirQualityPpmValue != null) {
-            roomAirQualityLevel = getAirQualityLevel(roomAirQualityPpmValue);
         }
     }
 
@@ -57,6 +55,13 @@ public class Stat {
             return "Very Unhealthy";
         } else {
             return "Hazardous";
+        }
+    }
+
+    public void setRoomAirQualityPpmValue(Double roomAirQualityPpmValue) {
+        this.roomAirQualityPpmValue = roomAirQualityPpmValue;
+        if(roomAirQualityLevel == null && roomAirQualityPpmValue != null) {
+            roomAirQualityLevel = getAirQualityLevel(roomAirQualityPpmValue);
         }
     }
 }

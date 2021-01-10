@@ -6,6 +6,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Log4j2
@@ -22,5 +23,9 @@ public class StatsService {
 
     public List<Stat> getAll() {
         return statsRepository.findAll();
+    }
+
+    public List<Stat> getLastHourData(Date curDate) {
+        return statsRepository.getListWhereCreationDateLessThan(curDate);
     }
 }
