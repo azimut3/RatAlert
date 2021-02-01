@@ -22,6 +22,11 @@ public class StatsService {
         statsRepository.saveAndFlush(stat);
     }
 
+    public void deleteAll(List<Stat> stats) {
+        log.info("deleting stats: " + stats);
+        statsRepository.deleteAll(stats);
+    }
+
     public List<Stat> getAll() {
         return statsRepository.findAll();
     }

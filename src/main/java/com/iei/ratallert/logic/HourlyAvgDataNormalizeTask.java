@@ -48,5 +48,6 @@ public class HourlyAvgDataNormalizeTask extends TimerTask {
                 .setRoomAirQualityPpmValue(airQualityMedian);
 
         statsService.save(avgStat);
+        statsService.deleteAll(lastHourStatsList);
     }
 }
