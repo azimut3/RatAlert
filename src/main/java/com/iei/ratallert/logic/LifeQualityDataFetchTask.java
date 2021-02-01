@@ -25,7 +25,7 @@ public class LifeQualityDataFetchTask extends TimerTask {
             RestTemplate restTemplate = new RestTemplate();
 
             LifeQualityData lifeQualityData = restTemplate
-                    .getForObject("http://192.168.31.92" + "/lifeQuality", LifeQualityData.class);
+                    .getForObject("http://94.158.155.196:92" + "/lifeQuality", LifeQualityData.class);
 
             Stat curStat = new Stat(lifeQualityData);
             statsService.save(curStat);

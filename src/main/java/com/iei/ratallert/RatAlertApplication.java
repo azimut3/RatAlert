@@ -28,13 +28,13 @@ public class RatAlertApplication {
 
     @PostConstruct
     public void servicesInit(){
-        new Timer().schedule(lifeQualityDataFetchTask, 5000, 5000);
+        new Timer().schedule(lifeQualityDataFetchTask, 5000, 10*1000);
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("mm");
         Integer minutes = Integer.valueOf(dtf.format(LocalDateTime.now()));
         Integer hourlyDelay = (60 - minutes) * 60 * 1000;
         log.info("Delay for hourly stat normalizer: " + hourlyDelay);
-        new Timer().schedule(hourlyAvgDataNormalizeTask, hourlyDelay, 5000);
+        new Timer().schedule(hourlyAvgDataNormalizeTask, hourlyDelay, 60*1000);
     }
 
 }
