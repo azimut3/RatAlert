@@ -39,6 +39,10 @@ public class Stat {
         this.roomTemperature = lifeQualityData.getTemperature();
         this.roomAirQualityPpmValue = lifeQualityData.getAirQualityPpm();
         this.roomAirQualityLevel = getAirQualityLevel(roomAirQualityPpmValue);
+
+        if(creationDate == null){
+            creationDate = new Date();
+        }
     }
 
     public static String getAirQualityLevel(Double airQualityPpmValue){
