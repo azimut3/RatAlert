@@ -1,7 +1,7 @@
 package com.iei.ratallert.database.controllers;
 
 import com.iei.ratallert.database.entities.Stat;
-import com.iei.ratallert.database.repository.StatsRepository;
+import com.iei.ratallert.database.repository.AvgStatsRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,30 +11,25 @@ import java.util.List;
 
 @Log4j2
 @Service
-public class StatsService {
-
+public class AvgStatService {
     @Autowired
-    StatsRepository statsRepository;
+    AvgStatsRepository avgStatsRepository;
 
     public void save(Stat stat) {
         log.info("Saving stat: " + stat);
-        statsRepository.saveAndFlush(stat);
+        avgStatsRepository.saveAndFlush(stat);
     }
 
     public void deleteAll(List<Stat> stats) {
         log.info("deleting stats: " + stats);
-        statsRepository.deleteAll(stats);
+        avgStatsRepository.deleteAll(stats);
     }
 
     public List<Stat> getAll() {
-        return statsRepository.findAll();
+        return avgStatsRepository.findAll();
     }
 
     public List<Stat> getLastHourData(LocalDateTime currentTime) {
-        return statsRepository.findAllByCreationDateIsBetween(currentTime.minusMinutes(5), currentTime);
-    }
-
-    public List<Stat> getAllStatsSorted() {
-        return statsRepository.findAllAndOrderByCreationDate();
+        return avgStatsRepository.findAllByCreationDateIsBetween(currentTime.minusMinutes(5), currentTime);
     }
 }

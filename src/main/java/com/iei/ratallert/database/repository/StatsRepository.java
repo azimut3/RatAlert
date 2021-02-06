@@ -1,5 +1,6 @@
 package com.iei.ratallert.database.repository;
 
+import com.iei.ratallert.database.entities.HourlyStat;
 import com.iei.ratallert.database.entities.Stat;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,4 +15,6 @@ public interface StatsRepository extends JpaRepository<Stat, Long> {
 
     List<Stat> findAllByCreationDateIsBetween(LocalDateTime moreThanDate, LocalDateTime lessThanDate);
 
+    @Query(value = "SELECT stat FROM Stat stat ORDER BY stat.creationDate")
+    List<Stat> findAllAndOrderByCreationDate();
 }

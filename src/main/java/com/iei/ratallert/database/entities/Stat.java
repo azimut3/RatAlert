@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 
 import javax.annotation.processing.Generated;
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -26,11 +27,11 @@ public class Stat {
     private String roomAirQualityLevel;
     @Setter(AccessLevel.NONE)
 
-    private Date creationDate;
+    protected LocalDateTime creationDate;
 
     public Stat(){
         if(creationDate == null){
-            creationDate = new Date();
+            creationDate = LocalDateTime.now();
         }
     }
 
@@ -41,7 +42,7 @@ public class Stat {
         this.roomAirQualityLevel = getAirQualityLevel(roomAirQualityPpmValue);
 
         if(creationDate == null){
-            creationDate = new Date();
+            creationDate = LocalDateTime.now();
         }
     }
 
