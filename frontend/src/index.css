@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.conditionBlock{
+  display: contents;
+}
+
+.conditionRow{
+  display: flex;
+  padding: 4px 0;
+}
+
+.conditionLabel{
+  padding: 0px 11px;
+}
+
+.conditionValue{
+
+}
