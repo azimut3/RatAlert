@@ -1,48 +1,45 @@
-import logo from './logo.svg';
 import './App.css';
 import React, {Component, useState, useEffect} from 'react';
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link
+} from "react-router-dom";
+import CurrentCondition from "./pages/CurrentConditions";
 
 
 function App() {
-	const [roomCondition, setRoomCondition] = useState("");
 
-	useEffect(() => {
-		fetch('/api/v1/currentCondition')
-			.then(response => response.json())
-			.then(data => {
-				setRoomCondition(data);
-			});
-	}, [])
 	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo"/>
-				<h1>Hi there!</h1>
-				<h3>Here is our current room condition</h3>
-				<div class="conditionBlock">
-					<div class="conditionRow">
-						<div class="conditionLabel">Air quality:</div>
-						<div class="conditionValue">{roomCondition.airQualityPpm} PPM</div>
-					</div>
-					<div class="conditionRow">
-						<div class="conditionLabel">Temperature:</div>
-						<div class="conditionValue">{roomCondition.temperature} °C
-						</div>
-					</div>
-					<div className="conditionRow">
-						<div class="conditionLabel">Humidity:</div>
-						<div class="conditionValue">{roomCondition.humidity} %
-						</div>
-					</div>
+		<Router>
+			<div>
+				<ul>
+					<li>
+						<Link to="/">Home</Link>
+					</li>
+					<li>
+						<Link to="/about">About</Link>
+					</li>
+					<li>
+						<Link to="/topics">Topics</Link>
+					</li>
+				</ul>
 
-				</div>
-
-			</header>
-			<p className="App-intro">
-				To get started, edit <code>src/App.js</code> and save to reload.
-			</p>
-		</div>
-	)
+				<Switch>
+					{/*<Route path="/about">*/}
+					{/*	<About />*/}
+					{/*</Route>*/}
+					{/*<Route path="/topics">*/}
+					{/*	<Topics />*/}
+					{/*</Route>*/}
+					<Route path="/">
+						<CurrentCondition />
+					</Route>
+				</Switch>
+			</div>
+		</Router>
+	);
 }
 
 export default App;
