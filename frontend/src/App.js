@@ -7,6 +7,8 @@ import {
 	Link
 } from "react-router-dom";
 import CurrentCondition from "./pages/CurrentConditions";
+import HomeCharts from "./pages/graphs/HomeConditionCharts";
+import About from "./pages/About";
 
 
 function App() {
@@ -19,22 +21,22 @@ function App() {
 						<Link to="/">Home</Link>
 					</li>
 					<li>
-						<Link to="/about">About</Link>
+						<Link to="/room-history">Room history charts</Link>
 					</li>
 					<li>
-						<Link to="/topics">Topics</Link>
+						<Link to="/about">About</Link>
 					</li>
 				</ul>
 
 				<Switch>
-					{/*<Route path="/about">*/}
-					{/*	<About />*/}
-					{/*</Route>*/}
-					{/*<Route path="/topics">*/}
-					{/*	<Topics />*/}
-					{/*</Route>*/}
-					<Route path="/">
+					<Route exact path="/">
 						<CurrentCondition />
+					</Route>
+					<Route path="/room-history">
+						<HomeCharts />
+					</Route>
+					<Route path="/about">
+						<About />
 					</Route>
 				</Switch>
 			</div>

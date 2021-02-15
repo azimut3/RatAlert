@@ -5,7 +5,9 @@ function HomeCharts() {
 
 	return (
 		<div className="App-header">
-			<h1>Test chart page</h1>
+			<p>This app is created by Ihor Horchynskyi as a practice and useful home tool.</p>
+			<br/>
+			<p>♥ Love Zoya ♥</p>
 		</div>
 	)
 }
