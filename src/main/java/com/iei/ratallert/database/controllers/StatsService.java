@@ -4,6 +4,7 @@ import com.iei.ratallert.database.entities.Stat;
 import com.iei.ratallert.database.repository.StatsRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -35,6 +36,6 @@ public class StatsService {
     }
 
     public List<Stat> getAllStatsSorted() {
-        return statsRepository.findAllAndOrderByCreationDate();
+        return statsRepository.findAll(Sort.by("creationDate"));
     }
 }

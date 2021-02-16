@@ -35,6 +35,8 @@ public class HourlyAvgDataNormalizeTask extends TimerTask {
         LocalDateTime datetime = null;
         List<Stat> tempStatsList = new ArrayList<>();
         List<HourlyStat> lastHourStatsList = new ArrayList<>();
+        log.info("Fetched stats");
+        log.info(statList);
         for(var stat : statList){
             if(datetime == null) datetime = stat.getCreationDate().minusMinutes(stat.getCreationDate().getMinute());
             if(stat.getCreationDate().isBefore(datetime.plusHours(1).plusMinutes(1))){
@@ -46,7 +48,8 @@ public class HourlyAvgDataNormalizeTask extends TimerTask {
                 lastHourStatsList.add(hourlyStat);
             }
         }
-
+        log.info("lastHourStatsList stats");
+        log.info(lastHourStatsList);
         hourlyStatService.saveAll(lastHourStatsList);
         statsService.deleteAll(statList);
     }
