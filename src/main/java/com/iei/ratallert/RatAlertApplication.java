@@ -32,7 +32,7 @@ public class RatAlertApplication {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("mm");
         Integer minutes = Integer.valueOf(dtf.format(LocalDateTime.now()));
-        Long hourlyDelay = (60L - minutes) * 60L * 60L * 1000L;
+        Long hourlyDelay = (60L - minutes) * 60L * 1000L;
         log.info("Delay for hourly stat normalizer: " + hourlyDelay);
 
         new Timer().schedule(hourlyAvgDataNormalizeTask, hourlyDelay, 60L*60L*1000L);

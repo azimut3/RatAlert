@@ -48,7 +48,7 @@ public class HourlyAvgDataNormalizeTask extends TimerTask {
         }
 
         hourlyStatService.saveAll(lastHourStatsList);
-        //statsService.deleteAll(statList);
+        statsService.deleteAll(statList);
     }
 
     public HourlyStat normalizeHourlyStats(List<Stat> lastHourStatsList){

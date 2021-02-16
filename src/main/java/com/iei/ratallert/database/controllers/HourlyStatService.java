@@ -42,4 +42,8 @@ public class HourlyStatService {
     public List<HourlyStat> getAllStatsSorted() {
         return hourlyStatRepository.findAllAndOrderByCreationDate();
     }
+
+    public List<HourlyStat> findAllAndOrderByCreationDate() {
+        return hourlyStatRepository.findAllAndOrderByCreationDate();
+    }
 }

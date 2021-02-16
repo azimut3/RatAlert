@@ -4,24 +4,33 @@ import moment from "moment";
 
 function HomeCharts() {
 	const [hourlyData, setHourlyData] = useState("");
-	let statTimeStamps = [];
-	let temperature = [];
-	let humidity = [];
-	let airQuality = [];
+	const [statTimeStamps, setStatTimeStamps] = useState("");
+	const [temperature, setTemperature] = useState("");
+	const [humidity, setHumidity] = useState("");
+	const [airQuality, setAirQuality] = useState("");
 
 	useEffect(() => {
 		fetch('/api/v1/hourlyStatsData')
 			.then(response => response.json())
 			.then(data => {
 				setHourlyData(data);
+				let statTimeStampsList = [];
+				let temperatureList = [];
+				let humidityList = [];
+				let airQualityList = [];
 				data.map(stat => {
 					let datetime = moment(stat.creationDate)
-					statTimeStamps.push(datetime.format('DD/MM hh:22'));
-					temperature.push(stat.roomTemperature);
-					humidity.push(stat.roomHumidity);
-					airQuality.push(stat.roomAirQualityPpmValue);
+					statTimeStampsList.push(datetime.format('DD/MM hh:22'));
+					temperatureList.push(stat.roomTemperature);
+					humidityList.push(stat.roomHumidity);
+					airQualityList.push(stat.roomAirQualityPpmValue);
 				})
 				console.log(statTimeStamps);
+
+				setStatTimeStamps(statTimeStampsList);
+				setTemperature(temperatureList);
+				setHumidity(humidityList);
+				setAirQuality(airQualityList);
 			});
 	}, [])
 
