@@ -20,7 +20,7 @@ function HomeCharts() {
 				let airQualityList = [];
 				data.map(stat => {
 					let datetime = moment(stat.creationDate)
-					statTimeStampsList.push(datetime.format('DD/MM hh:22'));
+					statTimeStampsList.push(datetime.format('DD/MM HH:mm'));
 					temperatureList.push(stat.roomTemperature);
 					humidityList.push(stat.roomHumidity);
 					airQualityList.push(stat.roomAirQualityPpmValue);
@@ -51,7 +51,7 @@ function HomeCharts() {
 				pointBackgroundColor: '#fff',
 				pointBorderWidth: 1,
 				pointHoverRadius: 5,
-				pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+				pointHoverBackgroundColor: 'rgb(221,177,67)',
 				pointHoverBorderColor: 'rgba(220,220,220,1)',
 				pointHoverBorderWidth: 2,
 				pointRadius: 1,
@@ -62,17 +62,17 @@ function HomeCharts() {
 				label: 'Humidity',
 				fill: false,
 				lineTension: 0.1,
-				backgroundColor: 'rgba(75,192,192,0.4)',
-				borderColor: 'rgba(75,192,192,1)',
+				backgroundColor: 'rgb(75,108,192)',
+				borderColor: 'rgb(75,132,192)',
 				borderCapStyle: 'butt',
 				borderDash: [],
 				borderDashOffset: 0.0,
 				borderJoinStyle: 'miter',
-				pointBorderColor: 'rgba(75,192,192,1)',
+				pointBorderColor: 'rgb(65,115,200)',
 				pointBackgroundColor: '#fff',
 				pointBorderWidth: 1,
 				pointHoverRadius: 5,
-				pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+				pointHoverBackgroundColor: 'rgb(8,117,234)',
 				pointHoverBorderColor: 'rgba(220,220,220,1)',
 				pointHoverBorderWidth: 2,
 				pointRadius: 1,
