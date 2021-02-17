@@ -103,28 +103,10 @@ function HomeCharts() {
 		]
 	};
 
-	const options = {
-		type: 'line',
-		options: {
-			responsive: true,
-			legend: {
-				position: 'right'
-			},
-			tooltips: {
-				mode: 'index',
-				position: "nearest"
-			},
-			animation: {
-				animateScale: true,
-				animateRotate: true
-			}
-		}
-	}
-
 	return (
 		<div className="App-header">
 			<h1>Hourly data charts:</h1>
-			<Line data={data} options={options}/>
+			<Line data={data}/>
 		</div>
 	)
 }

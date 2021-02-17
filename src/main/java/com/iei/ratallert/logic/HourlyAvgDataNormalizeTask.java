@@ -10,9 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TimerTask;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Log4j2
 @Service
@@ -25,6 +24,7 @@ public class HourlyAvgDataNormalizeTask extends TimerTask {
 
     @Override
     public void run() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:00");
         LocalDateTime curDate = LocalDateTime.now();
         log.info("Updating stats data. Current time: " + curDate);
         //List<Stat> lastHourStatsList = hourlyStatService.getLastHourData(curDate);
@@ -32,29 +32,34 @@ public class HourlyAvgDataNormalizeTask extends TimerTask {
         //log.info(lastHourStatsList);
         List<Stat> statList = statsService.getAllStatsSorted();
 
-        LocalDateTime datetime = null;
-        List<Stat> tempStatsList = new ArrayList<>();
+        Map<String, List<Stat>> dataMap = new HashMap<>();
         List<HourlyStat> lastHourStatsList = new ArrayList<>();
-        log.info("Fetched stats");
-        log.info(statList);
+
         for(var stat : statList){
-            if(datetime == null) datetime = stat.getCreationDate().minusMinutes(stat.getCreationDate().getMinute());
-            if(stat.getCreationDate().isBefore(datetime.plusHours(1).plusMinutes(1))){
-                tempStatsList.add(stat);
+            String timeRepresentation = stat.getCreationDate().format(formatter);
+            if(dataMap.containsKey(timeRepresentation)){
+                log.info("Contains key");
+                log.info(stat);
+                log.info(dataMap.get(timeRepresentation));
+                dataMap.get(timeRepresentation).add(stat);
             } else {
-                HourlyStat hourlyStat = normalizeHourlyStats(tempStatsList);
-                hourlyStat.setCreationDate(datetime.plusHours(1));
-                datetime = null;
-                lastHourStatsList.add(hourlyStat);
+                var mapStatList = new ArrayList<Stat>();
+                mapStatList.add(stat);
+                dataMap.put(timeRepresentation, mapStatList);
             }
         }
-        log.info("lastHourStatsList stats");
-        log.info(lastHourStatsList);
+        for (String str : dataMap.keySet()) {
+            HourlyStat hourlyStat = normalizeHourlyStats(dataMap.get(str));
+            hourlyStat.setCreationDate(LocalDateTime.parse(str, formatter));
+            lastHourStatsList.add(hourlyStat);
+        }
+
         hourlyStatService.saveAll(lastHourStatsList);
         statsService.deleteAll(statList);
     }
 
     public HourlyStat normalizeHourlyStats(List<Stat> lastHourStatsList){
+        log.info("Normalizing list: " + lastHourStatsList);
         DescriptiveStatistics temperatureStatistics = new DescriptiveStatistics();
         DescriptiveStatistics humidityStatistics = new DescriptiveStatistics();
         DescriptiveStatistics airQualityStatistics = new DescriptiveStatistics();
