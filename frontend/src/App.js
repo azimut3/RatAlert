@@ -9,24 +9,14 @@ import {
 import CurrentCondition from "./pages/CurrentConditions";
 import HomeCharts from "./pages/graphs/HomeConditionCharts";
 import About from "./pages/About";
-
+import AppMenu from "./components/AppMenu";
 
 function App() {
 
 	return (
 		<Router>
 			<div>
-				<ul>
-					<li>
-						<Link to="/">Home</Link>
-					</li>
-					<li>
-						<Link to="/room-history">Room history charts</Link>
-					</li>
-					<li>
-						<Link to="/about">About</Link>
-					</li>
-				</ul>
+				<AppMenu />
 
 				<Switch>
 					<Route exact path="/">
