@@ -12,7 +12,7 @@ function CurrentCondition() {
 	}, [])
 	return (
 		<div className="App">
-			<header className="App-header">
+			<div className="app-body">
 				<h1>Hi there!</h1>
 				<h3>Here is our current room condition</h3>
 				<div class="conditionBlock">
@@ -30,13 +30,10 @@ function CurrentCondition() {
 						<div class="conditionValue">{roomCondition.humidity} %
 						</div>
 					</div>
-
 				</div>
 
-			</header>
-			<p className="App-intro">
-				To get started, edit <code>src/App.js</code> and save to reload.
-			</p>
+			</div>
+
 		</div>
 	)
 }

@@ -1,6 +1,7 @@
 import React, {Component, useState, useEffect} from 'react';
 import {Line} from 'react-chartjs-2';
 import moment from "moment";
+import ChartHistoryPagePicklist from "../../components/ChartHistoryPagePicklist";
 
 function HomeCharts() {
 	const [hourlyData, setHourlyData] = useState("");
@@ -36,6 +37,11 @@ function HomeCharts() {
 
 	const data = {
 		labels: statTimeStamps,
+		options: {
+			tooltips: {
+				mode: 'x'
+			}
+		},
 		datasets: [
 			{
 				label: 'Temperature',
@@ -103,9 +109,14 @@ function HomeCharts() {
 		]
 	};
 
+
+
 	return (
-		<div className="App-header">
+		<div className="app-body">
 			<h1>Hourly data charts:</h1>
+			<div className="chart-container">
+				<ChartHistoryPagePicklist/>
+			</div>
 			<Line data={data}/>
 		</div>
 	)
