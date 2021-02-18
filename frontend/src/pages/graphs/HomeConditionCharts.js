@@ -10,6 +10,8 @@ function HomeCharts() {
 	const [humidity, setHumidity] = useState("");
 	const [airQuality, setAirQuality] = useState("");
 
+
+
 	useEffect(() => {
 		fetch('/api/v1/hourlyStatsData')
 			.then(response => response.json())
@@ -109,13 +111,16 @@ function HomeCharts() {
 		]
 	};
 
+	const setHistoryChange = (data) => {
+		console.log(`data changed ${data}`)
+	};
 
 
 	return (
 		<div className="app-body">
 			<h1>Hourly data charts:</h1>
 			<div className="chart-container">
-				<ChartHistoryPagePicklist/>
+				<ChartHistoryPagePicklist setHistoryChange={ setHistoryChange }/>
 			</div>
 			<Line data={data}/>
 		</div>

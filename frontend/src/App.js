@@ -10,12 +10,20 @@ import CurrentCondition from "./pages/CurrentConditions";
 import HomeCharts from "./pages/graphs/HomeConditionCharts";
 import About from "./pages/About";
 import AppMenu from "./components/AppMenu";
+import {createMuiTheme} from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/styles";
 
 function App() {
+	const theme = createMuiTheme({
+		palette: {
+			type: "dark"
+		}
+	});
 
 	return (
 		<Router>
 			<div>
+				<ThemeProvider theme={theme}>
 				<AppMenu />
 
 				<Switch>
@@ -32,6 +40,7 @@ function App() {
 				{/*<p className="App-intro">
 					To get started, edit <code>src/App.js</code> and save to reload.
 				</p>*/}
+				</ThemeProvider>
 			</div>
 		</Router>
 	);

@@ -1,7 +1,6 @@
 import React, {Component, useState, useEffect} from 'react';
 import {FormControl, InputLabel, MenuItem, Select, createMuiTheme} from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
-import { ThemeProvider } from "@material-ui/styles";
 
 const useStyles = makeStyles((theme) => ({
 	formControl: {
@@ -14,23 +13,17 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function ChartHistoryPagePicklist() {
+function ChartHistoryPagePicklist(params) {
 	const [past24hours, setPeriod] = React.useState('past24hours');
 
 	const classes = useStyles();
 
 	const handleChange = (event) => {
 		setPeriod(event.target.value);
+		params.setHistoryChange(event.target.value);
 	};
 
-	const theme = createMuiTheme({
-		palette: {
-			type: "dark"
-		}
-	});
-
 	return(
-		<ThemeProvider theme={theme}>
 			<FormControl variant="outlined" className={classes.formControl}>
 				<InputLabel id="demo-simple-select-outlined-label">Period</InputLabel>
 				<Select
@@ -46,8 +39,8 @@ function ChartHistoryPagePicklist() {
 					<MenuItem value="past7days" >Past Week</MenuItem>
 				</Select>
 			</FormControl>
-		</ThemeProvider>
 	)
 }
+
 
 export default ChartHistoryPagePicklist;
