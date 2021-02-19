@@ -1,5 +1,6 @@
 import './App.css';
-import './pages/graphs/HomeConditionChart.css';
+import './styles/HomeConditionChart.scss';
+import './styles/CurrentCondition.scss';
 import React, {Component, useState, useEffect} from 'react';
 import {
 	BrowserRouter as Router,
