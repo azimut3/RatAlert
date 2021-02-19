@@ -14,15 +14,16 @@ function HomeCharts() {
 		callForData("past24HourData");
 	}, [])
 
+	const options = {
+		tooltips: {
+			mode: 'x'
+		},
+		responsive: true,
+		maintainAspectRatio: true,
+	}
 	const data = {
 		labels: statTimeStamps,
-		options: {
-			tooltips: {
-				mode: 'x'
-			},
-			responsive: true,
-			maintainAspectRatio: true,
-		},
+
 		datasets: [
 			{
 				label: 'Temperature',
@@ -35,7 +36,7 @@ function HomeCharts() {
 				borderDashOffset: 0.0,
 				borderJoinStyle: 'miter',
 				pointBorderColor: 'rgb(192,180,75)',
-				pointBackgroundColor: '#fff',
+				pointBackgroundColor: 'rgb(192,180,75)',
 				pointBorderWidth: 1,
 				pointHoverRadius: 5,
 				pointHoverBackgroundColor: 'rgb(221,177,67)',
@@ -56,7 +57,7 @@ function HomeCharts() {
 				borderDashOffset: 0.0,
 				borderJoinStyle: 'miter',
 				pointBorderColor: 'rgb(65,115,200)',
-				pointBackgroundColor: '#fff',
+				pointBackgroundColor: 'rgb(75,108,192)',
 				pointBorderWidth: 1,
 				pointHoverRadius: 5,
 				pointHoverBackgroundColor: 'rgb(8,117,234)',
@@ -76,8 +77,8 @@ function HomeCharts() {
 				borderDash: [],
 				borderDashOffset: 0.0,
 				borderJoinStyle: 'miter',
-				pointBorderColor: 'rgba(75,192,192,1)',
-				pointBackgroundColor: '#fff',
+				pointBorderColor: 'rgb(29,112,112)',
+				pointBackgroundColor: 'rgb(64,210,210)',
 				pointBorderWidth: 1,
 				pointHoverRadius: 5,
 				pointHoverBackgroundColor: 'rgba(75,192,192,1)',
@@ -147,7 +148,7 @@ function HomeCharts() {
 				<ChartHistoryPagePicklist setHistoryChange={ setHistoryChange }/>
 			</div>
 			<div className="chart-container">
-				<Line data={data}/>
+				<Line data={data} options={options}/>
 			</div>
 		</div>
 	)
