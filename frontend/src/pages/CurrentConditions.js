@@ -18,16 +18,16 @@ function CurrentCondition() {
 				<div class="conditionBlock">
 					<div class="conditionRow">
 						<div class="conditionLabel">Air quality:</div>
-						<div class="conditionValue">{roomCondition.airQualityPpm} PPM</div>
+						<div class="conditionValue">{roomCondition.roomAirQualityLevel} ({roomCondition.roomAirQualityPpmValue} PPM) </div>
 					</div>
 					<div class="conditionRow">
 						<div class="conditionLabel">Temperature:</div>
-						<div class="conditionValue">{roomCondition.temperature} °C
+						<div class="conditionValue">{roomCondition.roomTemperature} °C
 						</div>
 					</div>
 					<div className="conditionRow">
-						<div class="conditionLabel">Humidity:</div>
-						<div class="conditionValue">{roomCondition.humidity} %
+						<div class="conditionLabel humidityLabel" >Humidity:</div>
+						<div class="conditionValue">{roomCondition.roomHumidity}%
 						</div>
 					</div>
 				</div>

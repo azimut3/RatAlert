@@ -40,12 +40,13 @@ public class Arduino {
     }
 
     @GetMapping(path = "/api/v1/currentCondition")
-    public LifeQualityData getCurrentConditions(){
+    public Stat getCurrentConditions(){
         RestTemplate restTemplate = new RestTemplate();
 
         LifeQualityData lifeQualityData = restTemplate
                 .getForObject("http://94.158.155.196:82" + "/lifeQuality", LifeQualityData.class);
-        return lifeQualityData;
+        Stat curStat = new Stat(lifeQualityData);
+        return curStat;
     }
 
     @GetMapping("/api/v1/hourlyStatsData")

@@ -36,7 +36,7 @@ function HomeCharts() {
 		scales: {
 			yAxes: [{
 				ticks: {
-					beginAtZero:true,
+					beginAtZero: true,
 					fontColor: 'rgba(220,220,220,1)',
 					fontSize: 15,
 				},
@@ -183,7 +183,7 @@ function HomeCharts() {
 		<div className="app-body">
 			<h1>Hourly data charts:</h1>
 			<div className="chart-data-picklist">
-				<ChartHistoryPagePicklist setHistoryChange={ setHistoryChange }/>
+				<ChartHistoryPagePicklist setHistoryChange={setHistoryChange}/>
 			</div>
 			<div className="chart-container">
 				<Line data={data} options={options}/>

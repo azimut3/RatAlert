@@ -19,9 +19,7 @@ const useStyles = makeStyles((theme) => ({
 	title: {
 		flexGrow: 1,
 	},
-	avisited:{
 
-	}
 }));
 
 function AppMenu() {
@@ -36,6 +34,10 @@ function AppMenu() {
 	};
 
 	const handleClose = (event) => {
+		setAnchorEl(null);
+	};
+
+	const setTitleAndClose = (event) => {
 		console.log(event)
 		let titleValue = event.target.name;
 		setTitle(titleValue);
@@ -46,7 +48,7 @@ function AppMenu() {
 		<div className={classes.root}>
 			<AppBar position="static">
 				<Toolbar>
-					<Typography variant="h6" className={classes.title}>
+					<Typography variant="h4" className={classes.title}>
 						{title}
 					</Typography>
 					<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
@@ -60,18 +62,10 @@ function AppMenu() {
 							open={Boolean(anchorEl)}
 							onClose={handleClose}
 						>
-							<MenuItem component={Link} to={'/'} onClick={handleClose} name="Home">Home</MenuItem>
-							<MenuItem component={Link} to={'/room-history'} onClick={handleClose} name="Data charts">Data charts</MenuItem>
-							<MenuItem component={Link} to={'/about'} onClick={handleClose} name="About">About</MenuItem>
-							{/*<MenuItem onClick={handleClose}>*/}
-							{/*	<Link to="/">Home</Link>*/}
-							{/*</MenuItem>*/}
-							{/*<MenuItem onClick={handleClose}>*/}
-							{/*	<Link to="/room-history">Room history charts</Link>*/}
-							{/*</MenuItem>*/}
-							{/*<MenuItem onClick={handleClose}>*/}
-							{/*	<Link to="/about">About</Link>*/}
-							{/*</MenuItem>*/}
+							<MenuItem component={Link} to={'/'} onClick={setTitleAndClose} name="Home">Home</MenuItem>
+							<MenuItem component={Link} to={'/room-history'} onClick={setTitleAndClose} name="Data charts">Data charts</MenuItem>
+							<MenuItem component={Link} to={'/about'} onClick={setTitleAndClose} name="About">About</MenuItem>
+
 						</Menu>
 					</IconButton>
 				</Toolbar>

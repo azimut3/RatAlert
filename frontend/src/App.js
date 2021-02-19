@@ -1,4 +1,5 @@
 import './App.css';
+import './pages/graphs/HomeConditionChart.css';
 import React, {Component, useState, useEffect} from 'react';
 import {
 	BrowserRouter as Router,
@@ -11,7 +12,7 @@ import HomeCharts from "./pages/graphs/HomeConditionCharts";
 import About from "./pages/About";
 import AppMenu from "./components/AppMenu";
 import {createMuiTheme} from "@material-ui/core";
-import { ThemeProvider } from "@material-ui/styles";
+import {ThemeProvider} from "@material-ui/styles";
 
 function App() {
 	const theme = createMuiTheme({
@@ -24,22 +25,19 @@ function App() {
 		<Router>
 			<div>
 				<ThemeProvider theme={theme}>
-				<AppMenu />
+					<AppMenu/>
 
-				<Switch>
-					<Route exact path="/">
-						<CurrentCondition />
-					</Route>
-					<Route path="/room-history">
-						<HomeCharts />
-					</Route>
-					<Route path="/about">
-						<About />
-					</Route>
-				</Switch>
-				{/*<p className="App-intro">
-					To get started, edit <code>src/App.js</code> and save to reload.
-				</p>*/}
+					<Switch>
+						<Route exact path="/">
+							<CurrentCondition/>
+						</Route>
+						<Route path="/room-history">
+							<HomeCharts/>
+						</Route>
+						<Route path="/about">
+							<About/>
+						</Route>
+					</Switch>
 				</ThemeProvider>
 			</div>
 		</Router>
