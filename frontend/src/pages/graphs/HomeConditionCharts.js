@@ -16,10 +16,48 @@ function HomeCharts() {
 
 	const options = {
 		tooltips: {
-			mode: 'x'
+			mode: 'x',
+			titleFontSize: 13,
+			bodyFontSize: 14,
 		},
+
 		responsive: true,
-		maintainAspectRatio: true,
+		maintainAspectRatio: false,
+
+		legend: {
+			display: true,
+			labels: {
+				fontColor: 'rgba(220,220,220,1)',
+				fontSize: 15,
+				padding: 10,
+			}
+		},
+
+		scales: {
+			yAxes: [{
+				ticks: {
+					beginAtZero:true,
+					fontColor: 'rgba(220,220,220,1)',
+					fontSize: 15,
+				},
+				gridLines: {
+					color: 'rgb(90,95,102)',
+					z: 0,
+				},
+			}],
+
+			xAxes: [{
+				ticks: {
+					fontColor: 'rgb(220,220,220)',
+					fontSize: 15,
+				},
+				gridLines: {
+					color: 'rgb(90,95,102)',
+					z: 0,
+				},
+			}]
+		}
+
 	}
 	const data = {
 		labels: statTimeStamps,
