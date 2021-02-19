@@ -10,31 +10,8 @@ function HomeCharts() {
 	const [humidity, setHumidity] = useState("");
 	const [airQuality, setAirQuality] = useState("");
 
-
-
 	useEffect(() => {
-		fetch('/api/v1/hourlyStatsData')
-			.then(response => response.json())
-			.then(data => {
-				setHourlyData(data);
-				let statTimeStampsList = [];
-				let temperatureList = [];
-				let humidityList = [];
-				let airQualityList = [];
-				data.map(stat => {
-					let datetime = moment(stat.creationDate)
-					statTimeStampsList.push(datetime.format('DD/MM HH:mm'));
-					temperatureList.push(stat.roomTemperature);
-					humidityList.push(stat.roomHumidity);
-					airQualityList.push(stat.roomAirQualityPpmValue);
-				})
-				console.log(statTimeStamps);
-
-				setStatTimeStamps(statTimeStampsList);
-				setTemperature(temperatureList);
-				setHumidity(humidityList);
-				setAirQuality(airQualityList);
-			});
+		callForData("past24HourData");
 	}, [])
 
 	const data = {
@@ -42,7 +19,9 @@ function HomeCharts() {
 		options: {
 			tooltips: {
 				mode: 'x'
-			}
+			},
+			responsive: true,
+			maintainAspectRatio: true,
 		},
 		datasets: [
 			{
@@ -113,16 +92,63 @@ function HomeCharts() {
 
 	const setHistoryChange = (data) => {
 		console.log(`data changed ${data}`)
+		switch (data) {
+			case "past3days" : {
+				callForData("past3DaysData");
+				break;
+			}
+			case "past7days" : {
+				callForData("pastWeekData");
+				break;
+			}
+			case "past24hours" : {
+				callForData("past24HourData");
+				break;
+			}
+			default: {
+				callForData("past24HourData");
+			}
+		}
+
 	};
+
+	const callForData = (endpoint) => {
+		fetch('/api/chart-data/v1/' + endpoint)
+			.then(response => response.json())
+			.then(data => {
+				console.log(`fetching data`)
+				console.log(data)
+				setHourlyData(data);
+				let statTimeStampsList = [];
+				let temperatureList = [];
+				let humidityList = [];
+				let airQualityList = [];
+				data.map(stat => {
+					let datetime = moment(stat.creationDate)
+					statTimeStampsList.push(datetime.format('DD/MM HH:mm'));
+					temperatureList.push(stat.roomTemperature);
+					humidityList.push(stat.roomHumidity);
+					airQualityList.push(stat.roomAirQualityPpmValue);
+				})
+				console.log(statTimeStamps);
+
+				setStatTimeStamps(statTimeStampsList);
+				setTemperature(temperatureList);
+				setHumidity(humidityList);
+				setAirQuality(airQualityList);
+			});
+	}
 
 
 	return (
 		<div className="app-body">
 			<h1>Hourly data charts:</h1>
-			<div className="chart-container">
+			<div className="chart-data-picklist">
 				<ChartHistoryPagePicklist setHistoryChange={ setHistoryChange }/>
 			</div>
-			<Line data={data}/>
+			<div className="chart-container">
+				<Line data={data}/>
+			</div>
 		</div>
 	)
 }

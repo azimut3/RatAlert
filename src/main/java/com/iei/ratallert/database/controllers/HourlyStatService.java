@@ -36,7 +36,7 @@ public class HourlyStatService {
     }
 
     public List<HourlyStat> getLastHourData(LocalDateTime currentTime) {
-        return hourlyStatRepository.findAllByCreationDateIsBetween(currentTime.minusMinutes(5), currentTime);
+        return hourlyStatRepository.findAllByCreationDateIsBetweenOrderByCreationDate(currentTime.minusMinutes(5), currentTime);
     }
 
     public List<HourlyStat> getAllStatsSorted() {
@@ -46,4 +46,10 @@ public class HourlyStatService {
     public List<HourlyStat> findAllAndOrderByCreationDate() {
         return hourlyStatRepository.findAllAndOrderByCreationDate();
     }
+
+    public List<HourlyStat> findAllBetweenDates(LocalDateTime moreThanDate, LocalDateTime lessThanDate) {
+        return hourlyStatRepository.findAllByCreationDateIsBetweenOrderByCreationDate(moreThanDate, lessThanDate);
+    }
+
+
 }

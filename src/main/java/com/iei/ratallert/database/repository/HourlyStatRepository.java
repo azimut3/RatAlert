@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface HourlyStatRepository  extends JpaRepository<HourlyStat, Long> {
 
-    List<HourlyStat> findAllByCreationDateIsBetween(LocalDateTime moreThanDate, LocalDateTime lessThanDate);
+    List<HourlyStat> findAllByCreationDateIsBetweenOrderByCreationDate(LocalDateTime moreThanDate, LocalDateTime lessThanDate);
 
     @Query(value = "SELECT * FROM hourly_stat ORDER BY creation_date", nativeQuery = true)
     List<HourlyStat> findAllAndOrderByCreationDate();
