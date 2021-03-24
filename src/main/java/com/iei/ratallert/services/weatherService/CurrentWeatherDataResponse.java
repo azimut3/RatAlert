@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,6 +62,12 @@ public class CurrentWeatherDataResponse {
     private String name;
     @JsonProperty("cod")
     private Integer cod;
+
+    private LocalDateTime fetchedDate;
+
+    public CurrentWeatherDataResponse(){
+        this.fetchedDate = LocalDateTime.now();
+    }
 
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();

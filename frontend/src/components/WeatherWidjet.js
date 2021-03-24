@@ -24,7 +24,7 @@ function WeatherWidget() {
 		callForData();
 	}, []);
 
-	const [currentWeatherState, setCurrentWeatherState] = useState("");
+	const [currentWeatherState, setCurrentWeatherState] = useState(null);
 
 
 	const callForData = (endpoint) => {
@@ -91,7 +91,7 @@ function WeatherWidget() {
 				<Card className={classes.root}>
 					<CardContent>
 						<Typography className={classes.title} color="textSecondary" gutterBottom>
-							Current weather state:
+							Current weather:
 						</Typography>
 						<div className={classes.weatherForecastContent}>
 							<div className={classes.leftSection}>
@@ -135,6 +135,9 @@ function WeatherWidget() {
 
 			</div>
 		)
+	}
+	else {
+		return <div></div>
 	}
 }
 

@@ -5,15 +5,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
+
 @Log4j2
 @RestController
 @RequestMapping("/api/weather/v1")
 public class WeatherEndpoint {
+    public static CurrentWeatherDataResponse responseInstance;
 
     @GetMapping("/currentWeather")
     public CurrentWeatherDataResponse getCurrentWeatherForecast() {
 
-        CurrentWeatherDataResponse response = OpenWeatherService.getCurrentForecast();
-        return response;
+        if(responseInstance == null){
+            responseInstance = OpenWeatherService.getCurrentForecast();
+        }
+        if((responseInstance.getFetchedDate().getMinute() + LocalDateTime.now().getMinute()) >= 10){
+            responseInstance = OpenWeatherService.getCurrentForecast();
+        }
+
+        return responseInstance;
     }
 }
