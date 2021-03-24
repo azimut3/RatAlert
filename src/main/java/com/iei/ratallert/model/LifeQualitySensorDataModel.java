@@ -1,11 +1,11 @@
-package com.iei.ratallert.logic;
+package com.iei.ratallert.model;
 
 import lombok.Data;
 
 import java.io.Serializable;
 
 @Data
-public class LifeQualityData implements Serializable {
+public class LifeQualitySensorDataModel implements Serializable {
     private Double airQualityPpm;
     private Double temperature;
     private Double humidity;

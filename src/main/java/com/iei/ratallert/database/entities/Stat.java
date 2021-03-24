@@ -1,15 +1,13 @@
 package com.iei.ratallert.database.entities;
 
-import com.iei.ratallert.logic.LifeQualityData;
+import com.iei.ratallert.model.LifeQualitySensorDataModel;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import javax.annotation.processing.Generated;
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Data
@@ -35,7 +33,7 @@ public class Stat {
         }
     }
 
-    public Stat(LifeQualityData lifeQualityData) {
+    public Stat(LifeQualitySensorDataModel lifeQualityData) {
         this.roomHumidity = lifeQualityData.getHumidity();
         this.roomTemperature = lifeQualityData.getTemperature();
         this.roomAirQualityPpmValue = lifeQualityData.getAirQualityPpm();

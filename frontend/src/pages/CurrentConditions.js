@@ -3,6 +3,7 @@ import {IconButton, Tooltip, Typography} from "@material-ui/core";
 import InfoIcon from '@material-ui/icons/Info';
 import {withStyles} from "@material-ui/styles";
 import moment from "moment";
+import WeatherWidget from "../components/WeatherWidjet";
 
 function CurrentCondition() {
 	const [roomCondition, setRoomCondition] = useState("");
@@ -28,14 +29,14 @@ function CurrentCondition() {
 		<div className="App">
 			<div className="app-body">
 				<div className="conditionRowFooter">
-					Last update: {moment(roomCondition.creationDate).format("HH:mm:ss YYYY/MM/DD")}
+					Last update: {moment(roomCondition.creationDate).format("HH:mm:ss DD/MM/YYYY")}
 				</div>
 				<h1>Hi there!</h1>
 				<h3>Here is our current room condition</h3>
-				<div class="conditionBlock">
-					<div class="conditionRow">
-						<div class="conditionLabel airQualityLabel">Air quality:</div>
-						<div class="conditionValue">
+				<div className="conditionBlock">
+					<div className="conditionRow">
+						<div className="conditionLabel airQualityLabel">Air quality:</div>
+						<div className="conditionValue">
 							{roomCondition.roomAirQualityLevel} ({roomCondition.roomAirQualityPpmValue} PPM)
 							<HtmlTooltip
 								title={
@@ -56,17 +57,19 @@ function CurrentCondition() {
 							</HtmlTooltip>
 						</div>
 					</div>
-					<div class="conditionRow">
-						<div class="conditionLabel temperatureLabel">Temperature:</div>
-						<div class="conditionValue">{roomCondition.roomTemperature} °C
+					<div className="conditionRow">
+						<div className="conditionLabel temperatureLabel">Temperature:</div>
+						<div className="conditionValue">{roomCondition.roomTemperature} °C
 						</div>
 					</div>
 					<div className="conditionRow">
-						<div class="conditionLabel humidityLabel" >Humidity:</div>
-						<div class="conditionValue">{roomCondition.roomHumidity}%
+						<div className="conditionLabel humidityLabel" >Humidity:</div>
+						<div className="conditionValue">{roomCondition.roomHumidity}%
 						</div>
 					</div>
 				</div>
+
+				<WeatherWidget></WeatherWidget>
 
 			</div>
 

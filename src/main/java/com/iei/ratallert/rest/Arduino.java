@@ -1,17 +1,15 @@
 package com.iei.ratallert.rest;
 
 import com.iei.ratallert.database.controllers.HourlyStatService;
-import com.iei.ratallert.database.controllers.StatsService;
+import com.iei.ratallert.database.controllers.MidHourStatService;
 import com.iei.ratallert.database.entities.HourlyStat;
 import com.iei.ratallert.database.entities.Stat;
-import com.iei.ratallert.logic.HourlyAvgDataNormalizeTask;
-import com.iei.ratallert.logic.LifeQualityData;
+import com.iei.ratallert.schedulers.HourlyAvgDataNormalizeTask;
+import com.iei.ratallert.model.LifeQualitySensorDataModel;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,7 +19,7 @@ import java.util.List;
 @RestController
 public class Arduino {
     @Autowired
-    StatsService statsService;
+    MidHourStatService midHourStatService;
     @Autowired
     HourlyStatService hourlyStatService;
     @Autowired
@@ -43,8 +41,8 @@ public class Arduino {
     public Stat getCurrentConditions(){
         RestTemplate restTemplate = new RestTemplate();
 
-        LifeQualityData lifeQualityData = restTemplate
-                .getForObject("http://94.158.155.196:82" + "/lifeQuality", LifeQualityData.class);
+        LifeQualitySensorDataModel lifeQualityData = restTemplate
+                .getForObject("http://94.158.155.196:82" + "/lifeQuality", LifeQualitySensorDataModel.class);
         Stat curStat = new Stat(lifeQualityData);
         return curStat;
     }

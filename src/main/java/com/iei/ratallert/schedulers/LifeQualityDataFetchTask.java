@@ -1,6 +1,7 @@
-package com.iei.ratallert.logic;
+package com.iei.ratallert.schedulers;
 
-import com.iei.ratallert.database.controllers.StatsService;
+import com.iei.ratallert.database.controllers.MidHourStatService;
+import com.iei.ratallert.model.LifeQualitySensorDataModel;
 import com.iei.ratallert.database.entities.Stat;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class LifeQualityDataFetchTask extends TimerTask {
     Boolean isInit = true;
 
     @Autowired
-    StatsService statsService;
+    MidHourStatService midHourStatService;
 
     @Override
     public void run() {
@@ -24,11 +25,11 @@ public class LifeQualityDataFetchTask extends TimerTask {
             log.info("Fetching data from arduino controller...");
             RestTemplate restTemplate = new RestTemplate();
 
-            LifeQualityData lifeQualityData = restTemplate
-                    .getForObject("http://94.158.155.196:82" + "/lifeQuality", LifeQualityData.class);
+            LifeQualitySensorDataModel lifeQualityData = restTemplate
+                    .getForObject("http://94.158.155.196:82" + "/lifeQuality", LifeQualitySensorDataModel.class);
 
             Stat curStat = new Stat(lifeQualityData);
-            statsService.save(curStat);
+            midHourStatService.save(curStat);
 
             log.info("Data fetched");
             log.info(lifeQualityData);

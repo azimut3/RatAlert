@@ -1,7 +1,7 @@
-package com.iei.ratallert.logic;
+package com.iei.ratallert.schedulers;
 
 import com.iei.ratallert.database.controllers.HourlyStatService;
-import com.iei.ratallert.database.controllers.StatsService;
+import com.iei.ratallert.database.controllers.MidHourStatService;
 import com.iei.ratallert.database.entities.HourlyStat;
 import com.iei.ratallert.database.entities.Stat;
 import lombok.extern.log4j.Log4j2;
@@ -20,7 +20,7 @@ public class HourlyAvgDataNormalizeTask extends TimerTask {
     @Autowired
     HourlyStatService hourlyStatService;
     @Autowired
-    StatsService statsService;
+    MidHourStatService midHourStatService;
 
     @Override
     public void run() {
@@ -30,7 +30,7 @@ public class HourlyAvgDataNormalizeTask extends TimerTask {
         //List<Stat> lastHourStatsList = hourlyStatService.getLastHourData(curDate);
         log.info("lastHourStatsList");
         //log.info(lastHourStatsList);
-        List<Stat> statList = statsService.getAllStatsSorted();
+        List<Stat> statList = midHourStatService.getAllStatsSorted();
 
         Map<String, List<Stat>> dataMap = new HashMap<>();
         List<HourlyStat> lastHourStatsList = new ArrayList<>();
@@ -55,7 +55,7 @@ public class HourlyAvgDataNormalizeTask extends TimerTask {
         }
 
         hourlyStatService.saveAll(lastHourStatsList);
-        statsService.deleteAll(statList);
+        midHourStatService.deleteAll(statList);
     }
 
     public HourlyStat normalizeHourlyStats(List<Stat> lastHourStatsList){

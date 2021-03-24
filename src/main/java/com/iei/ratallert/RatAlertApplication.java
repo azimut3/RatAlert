@@ -1,7 +1,7 @@
 package com.iei.ratallert;
 
-import com.iei.ratallert.logic.HourlyAvgDataNormalizeTask;
-import com.iei.ratallert.logic.LifeQualityDataFetchTask;
+import com.iei.ratallert.schedulers.HourlyAvgDataNormalizeTask;
+import com.iei.ratallert.schedulers.LifeQualityDataFetchTask;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Timer;
 
 @Log4j2
@@ -28,14 +27,14 @@ public class RatAlertApplication {
 
     @PostConstruct
     public void servicesInit(){
-        new Timer().schedule(lifeQualityDataFetchTask, 5000L, 10L*60L*1000L);
+        //new Timer().schedule(lifeQualityDataFetchTask, 5000L, 10L*60L*1000L);
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("mm");
         Integer minutes = Integer.valueOf(dtf.format(LocalDateTime.now()));
         Long hourlyDelay = (60L - minutes) * 60L * 1000L;
         log.info("Delay for hourly stat normalizer: " + hourlyDelay);
 
-        new Timer().schedule(hourlyAvgDataNormalizeTask, hourlyDelay, 60L*60L*1000L);
+        //new Timer().schedule(hourlyAvgDataNormalizeTask, hourlyDelay, 60L*60L*1000L);
     }
 
 }
