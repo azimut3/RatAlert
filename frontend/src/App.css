@@ -55,3 +55,40 @@ body{
         transform: rotate(360deg);
     }
 }
+
+.app-container{
+    max-width: 1264px;
+    width: 100%;
+    background: none;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.container{
+    position: relative;
+    width: 100%;
+    flex: 1 0 auto;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.content{
+    max-width: 1100px;
+    width: calc(100% - 164px);
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.right-sidebar{
+    width: 164px;
+    flex-shrink: 0;
+    z-index: 1000;
+    box-shadow: 0 0 0 rgb(12 13 14 / 5%);
+    transition: box-shadow ease-in-out .1s,transform ease-in-out .1s;
+    padding: 24px 15px;
+}
+
+.body-container{
+    background: #282c34fa;
+}

@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }))
 
-function CurrentCondition() {
+function HomePage() {
 	const [roomCondition, setRoomCondition] = useState("");
 
 	const HtmlTooltip = withStyles((theme) => ({
@@ -56,9 +56,9 @@ function CurrentCondition() {
 	return (
 		<div className="App">
 			<div className="app-body">
-				<div className={classes.container}>
+				<div>
 
-					<div className={classes.mainColumn}>
+					<div>
 							<div className="conditionRowFooter">
 								Last update: {moment(roomCondition.creationDate).format("HH:mm:ss DD/MM/YYYY")}
 							</div>
@@ -100,9 +100,6 @@ function CurrentCondition() {
 								</div>
 							</div>
 					</div>
-					<div className={classes.rightColumn}>
-							<WeatherWidget></WeatherWidget>
-					</div>
 				</div>
 
 
@@ -112,4 +109,4 @@ function CurrentCondition() {
 	)
 }
 
-export default CurrentCondition;
+export default HomePage;

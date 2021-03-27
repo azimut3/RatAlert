@@ -8,12 +8,13 @@ import {
 	Route,
 	Link
 } from "react-router-dom";
-import CurrentCondition from "./pages/CurrentConditions";
+import HomePage from "./pages/HomePage";
 import HomeCharts from "./pages/graphs/HomeConditionCharts";
 import About from "./pages/About";
 import AppMenu from "./components/AppMenu";
 import {createMuiTheme} from "@material-ui/core";
 import {ThemeProvider} from "@material-ui/styles";
+import WeatherWidget from "./components/WeatherWidjet";
 
 function App() {
 	const theme = createMuiTheme({
@@ -24,22 +25,29 @@ function App() {
 
 	return (
 		<Router>
-			<div>
+			<div className="body-container">
 				<ThemeProvider theme={theme}>
 					<AppMenu/>
-
-					<Switch>
-						<Route exact path="/">
-							<CurrentCondition/>
-						</Route>
-						<Route path="/room-history">
-							<HomeCharts/>
-						</Route>
-						<Route path="/about">
-							<About/>
-						</Route>
-					</Switch>
+					<div className="app-container container">
+						<div className="content">
+							<Switch>
+								<Route exact path="/">
+									<HomePage/>
+								</Route>
+								<Route path="/room-history">
+									<HomeCharts/>
+								</Route>
+								<Route path="/about">
+									<About/>
+								</Route>
+							</Switch>
+						</div>
+						<div className="right-sidebar">
+							<WeatherWidget></WeatherWidget>
+						</div>
+					</div>
 				</ThemeProvider>
+
 			</div>
 		</Router>
 	);
