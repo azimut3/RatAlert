@@ -89,6 +89,10 @@ body{
     padding: 24px 15px;
 }
 
+.page-wrapper{
+    padding: 10px 15px;
+}
+
 .body-container{
-    background: #282c34fa;
+    background: #282c34;
 }

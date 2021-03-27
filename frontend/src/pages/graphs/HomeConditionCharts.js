@@ -180,7 +180,7 @@ function HomeCharts() {
 
 
 	return (
-		<div className="app-body">
+		<div className="app-body page-wrapper">
 			<h1>Hourly data charts:</h1>
 			<div className="chart-data-picklist">
 				<ChartHistoryPagePicklist setHistoryChange={setHistoryChange}/>

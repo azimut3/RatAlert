@@ -4,7 +4,7 @@ import React, {Component, useState, useEffect} from 'react';
 function HomeCharts() {
 
 	return (
-		<div className="app-body">
+		<div className="app-body page-wrapper">
 			<p>This app is created by Ihor Horchynskyi as a practice and useful home tool.</p>
 			<br/>
 			<p>♥ Love Zoya ♥</p>
