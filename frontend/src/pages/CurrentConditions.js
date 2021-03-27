@@ -18,6 +18,8 @@ const useStyles = makeStyles((theme) => ({
 		display: 'grid',
 		gridTemplateColumns: 'repeat(12, 1fr)',
 		gridGap: theme.spacing(3),
+		width: '100%',
+		margin: '0 20px',
 	},
 	mainColumn: {
 		gridColumnEnd: 'span 9',

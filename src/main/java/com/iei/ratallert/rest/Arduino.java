@@ -8,6 +8,7 @@ import com.iei.ratallert.schedulers.HourlyAvgDataNormalizeTask;
 import com.iei.ratallert.model.LifeQualitySensorDataModel;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,8 @@ public class Arduino {
     HourlyStatService hourlyStatService;
     @Autowired
     HourlyAvgDataNormalizeTask hourlyAvgDataNormalizeTask;
+    @Value("${ESP8266_SMART_HOME}")
+    String lifeQualityEndpoint;
 
     @GetMapping(path = "/api/v1/esp")
     public String test(){
@@ -42,7 +45,7 @@ public class Arduino {
         RestTemplate restTemplate = new RestTemplate();
 
         LifeQualitySensorDataModel lifeQualityData = restTemplate
-                .getForObject("http://94.158.155.196:82" + "/lifeQuality", LifeQualitySensorDataModel.class);
+                .getForObject(lifeQualityEndpoint + "/lifeQuality", LifeQualitySensorDataModel.class);
         Stat curStat = new Stat(lifeQualityData);
         return curStat;
     }

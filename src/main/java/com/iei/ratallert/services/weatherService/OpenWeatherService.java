@@ -3,7 +3,7 @@ package com.iei.ratallert.services.weatherService;
 import org.springframework.web.client.RestTemplate;
 
 public class OpenWeatherService {
-    private static String API_KEY = "fe901b4ce965424b15397e529b828d91";
+    private static String API_KEY = System.getProperty("OPEN_WEATHEP_API_KEY") ;
     private static String CITY_ID = "698740";
     private static String UNITS = "metric";
     private static String CURRENT_WEATHER = "api.openweathermap.org/data/2.5/weather?Id={cityId}&appid={API_key}";
