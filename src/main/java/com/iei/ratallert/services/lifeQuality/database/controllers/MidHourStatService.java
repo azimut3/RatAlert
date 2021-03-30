@@ -1,7 +1,7 @@
-package com.iei.ratallert.database.controllers;
+package com.iei.ratallert.services.lifeQuality.database.controllers;
 
-import com.iei.ratallert.database.entities.Stat;
-import com.iei.ratallert.database.repository.StatsRepository;
+import com.iei.ratallert.services.lifeQuality.database.entities.Stat;
+import com.iei.ratallert.services.lifeQuality.database.repository.StatsRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;

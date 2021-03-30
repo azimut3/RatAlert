@@ -1,6 +1,6 @@
-package com.iei.ratallert.database.entities;
+package com.iei.ratallert.services.lifeQuality.database.entities;
 
-import com.iei.ratallert.model.LifeQualitySensorDataModel;
+import com.iei.ratallert.services.lifeQuality.model.LifeQualitySensorDataModel;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
@@ -9,13 +9,14 @@ import lombok.experimental.Accessors;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
 @Data
 @Accessors(chain = true)
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Stat {
+@Entity
+public class HourlyStat {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Double roomHumidity;
     private Double roomTemperature;
@@ -27,34 +28,34 @@ public class Stat {
 
     protected LocalDateTime creationDate;
 
-    public Stat(){
-        if(creationDate == null){
+    public HourlyStat() {
+        if (creationDate == null) {
             creationDate = LocalDateTime.now();
         }
     }
 
-    public Stat(LifeQualitySensorDataModel lifeQualityData) {
+    public HourlyStat(LifeQualitySensorDataModel lifeQualityData) {
         this.roomHumidity = lifeQualityData.getHumidity();
         this.roomTemperature = lifeQualityData.getTemperature();
         this.roomAirQualityPpmValue = lifeQualityData.getAirQualityPpm();
         this.roomAirQualityLevel = getAirQualityLevel(roomAirQualityPpmValue);
 
-        if(creationDate == null){
+        if (creationDate == null) {
             creationDate = LocalDateTime.now();
         }
     }
 
-    public static String getAirQualityLevel(Double airQualityPpmValue){
+    public static String getAirQualityLevel(Double airQualityPpmValue) {
 
-        if(airQualityPpmValue <= 50.){
+        if (airQualityPpmValue <= 50.) {
             return "GOOD";
-        } else if(airQualityPpmValue <= 100.){
+        } else if (airQualityPpmValue <= 100.) {
             return "Moderate";
-        } else if(airQualityPpmValue <= 150.){
+        } else if (airQualityPpmValue <= 150.) {
             return "Unhealthy for SG";
-        } else if(airQualityPpmValue <= 200.){
+        } else if (airQualityPpmValue <= 200.) {
             return "Unhealthy";
-        }else if(airQualityPpmValue <= 300.){
+        } else if (airQualityPpmValue <= 300.) {
             return "Very Unhealthy";
         } else {
             return "Hazardous";
@@ -63,8 +64,14 @@ public class Stat {
 
     public void setRoomAirQualityPpmValue(Double roomAirQualityPpmValue) {
         this.roomAirQualityPpmValue = roomAirQualityPpmValue;
-        if(roomAirQualityLevel == null && roomAirQualityPpmValue != null) {
+        if (roomAirQualityLevel == null && roomAirQualityPpmValue != null) {
             roomAirQualityLevel = getAirQualityLevel(roomAirQualityPpmValue);
         }
+    }
+
+
+    public HourlyStat setCreationDate(LocalDateTime dateTime) {
+        this.creationDate = dateTime;
+        return this;
     }
 }

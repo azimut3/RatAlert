@@ -1,7 +1,7 @@
-package com.iei.ratallert.rest;
+package com.iei.ratallert.services.lifeQuality.rest;
 
-import com.iei.ratallert.database.controllers.HourlyStatService;
-import com.iei.ratallert.database.entities.HourlyStat;
+import com.iei.ratallert.services.lifeQuality.database.controllers.HourlyStatService;
+import com.iei.ratallert.services.lifeQuality.database.entities.HourlyStat;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;

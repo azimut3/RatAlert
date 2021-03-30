@@ -1,9 +1,9 @@
-package com.iei.ratallert.schedulers;
+package com.iei.ratallert.services.lifeQuality.schedulers;
 
-import com.iei.ratallert.database.controllers.HourlyStatService;
-import com.iei.ratallert.database.controllers.MidHourStatService;
-import com.iei.ratallert.database.entities.HourlyStat;
-import com.iei.ratallert.database.entities.Stat;
+import com.iei.ratallert.services.lifeQuality.database.controllers.HourlyStatService;
+import com.iei.ratallert.services.lifeQuality.database.controllers.MidHourStatService;
+import com.iei.ratallert.services.lifeQuality.database.entities.HourlyStat;
+import com.iei.ratallert.services.lifeQuality.database.entities.Stat;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,14 +1,13 @@
-package com.iei.ratallert.database.repository;
+package com.iei.ratallert.services.lifeQuality.database.repository;
 
-import com.iei.ratallert.database.entities.HourlyStat;
-import com.iei.ratallert.database.entities.Stat;
+import com.iei.ratallert.services.lifeQuality.database.entities.HourlyStat;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface HourlyStatRepository  extends JpaRepository<HourlyStat, Long> {
+public interface HourlyStatRepository extends JpaRepository<HourlyStat, Long> {
 
     List<HourlyStat> findAllByCreationDateIsBetweenOrderByCreationDate(LocalDateTime moreThanDate, LocalDateTime lessThanDate);
 

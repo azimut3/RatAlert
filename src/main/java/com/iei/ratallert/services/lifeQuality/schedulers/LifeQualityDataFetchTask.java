@@ -1,8 +1,8 @@
-package com.iei.ratallert.schedulers;
+package com.iei.ratallert.services.lifeQuality.schedulers;
 
-import com.iei.ratallert.database.controllers.MidHourStatService;
-import com.iei.ratallert.model.LifeQualitySensorDataModel;
-import com.iei.ratallert.database.entities.Stat;
+import com.iei.ratallert.services.lifeQuality.database.controllers.MidHourStatService;
+import com.iei.ratallert.services.lifeQuality.model.LifeQualitySensorDataModel;
+import com.iei.ratallert.services.lifeQuality.database.entities.Stat;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

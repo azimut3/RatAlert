@@ -1,7 +1,7 @@
 package com.iei.ratallert;
 
-import com.iei.ratallert.schedulers.HourlyAvgDataNormalizeTask;
-import com.iei.ratallert.schedulers.LifeQualityDataFetchTask;
+import com.iei.ratallert.services.lifeQuality.schedulers.HourlyAvgDataNormalizeTask;
+import com.iei.ratallert.services.lifeQuality.schedulers.LifeQualityDataFetchTask;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;

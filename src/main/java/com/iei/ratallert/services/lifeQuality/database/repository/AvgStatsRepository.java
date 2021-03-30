@@ -1,6 +1,6 @@
-package com.iei.ratallert.database.repository;
+package com.iei.ratallert.services.lifeQuality.database.repository;
 
-import com.iei.ratallert.database.entities.Stat;
+import com.iei.ratallert.services.lifeQuality.database.entities.Stat;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;

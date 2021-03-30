@@ -1,4 +1,4 @@
-package com.iei.ratallert.model;
+package com.iei.ratallert.services.lifeQuality.model;
 
 import lombok.Data;
 

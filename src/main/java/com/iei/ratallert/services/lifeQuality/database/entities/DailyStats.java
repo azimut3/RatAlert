@@ -1,4 +1,4 @@
-package com.iei.ratallert.database.entities;
+package com.iei.ratallert.services.lifeQuality.database.entities;
 
 import javax.persistence.Entity;
 
