@@ -51,8 +51,8 @@ function AppMenu() {
 					<Typography variant="h4" className={classes.title}>
 						{title}
 					</Typography>
-					<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-						<MenuIcon aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+					<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleClick}>
+						<MenuIcon aria-controls="simple-menu" aria-haspopup="true" >
 							Open Menu
 						</MenuIcon>
 						<Menu

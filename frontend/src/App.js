@@ -15,6 +15,7 @@ import AppMenu from "./components/AppMenu";
 import {createMuiTheme} from "@material-ui/core";
 import {ThemeProvider} from "@material-ui/styles";
 import WeatherWidget from "./components/WeatherWidjet";
+import DrugsReview from "./pages/DrugsReview";
 
 function App() {
 	const theme = createMuiTheme({
@@ -39,6 +40,9 @@ function App() {
 								</Route>
 								<Route path="/about">
 									<About/>
+								</Route>
+								<Route path="/drugs">
+									<DrugsReview/>
 								</Route>
 							</Switch>
 						</div>

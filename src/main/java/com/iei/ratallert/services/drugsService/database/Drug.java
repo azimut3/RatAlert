@@ -23,6 +23,7 @@ public class Drug {
 
     public enum Unit{
         PILLS,
-        PACK
+        PACK,
+        DROPS
     }
 }
