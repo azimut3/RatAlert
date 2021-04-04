@@ -1,46 +1,55 @@
 import React, {Component, useState, useEffect} from 'react';
-import {FormControl, TextField} from "@material-ui/core";
+import {FormControl, MenuItem, TextField} from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+	root: {
+		'& .MuiTextField-root': {
+			margin: theme.spacing(1),
+			width: '25ch',
+		},
+	},
+}));
 
 function DrugCreationForm() {
-	const units = [
-		{
-			value: 'USD',
-			label: '$',
-		},
-		{
-			value: 'EUR',
-			label: '€',
-		},
-		{
-			value: 'BTC',
-			label: '฿',
-		},
-		{
-			value: 'JPY',
-			label: '¥',
-		},
-	];
+	const [units, setUnits] = useState([]);
 
+	function getDrugUnits() {
+		fetch('/api/drugs/v1/drugUnitType')
+			.then(response => response.json())
+			.then(data => {
+				setUnits(data);
+				setSelectedUnit(data[0].value)
+				console.log(data)
+			});
+	}
+
+	useEffect(() => {
+		getDrugUnits();
+	}, []);
+
+	const classes = useStyles();
 	const [newDrug, setNewDrug] = React.useState('EUR');
+	const [selectedUnit, setSelectedUnit] = React.useState("No value selected");
 
 	const handleChange = (event) => {
-		setNewDrug(event.target.value);
+		setSelectedUnit(event.target.value);
 	};
 
 	return (
 		<div>
-			<FormControl noValidate>
+			<FormControl noValidate className={classes.root}>
 				<TextField
 					id="filled-helperText"
 					label="Name"
-					defaultValue="Default Value"
+					//defaultValue="Default Value"
 					//helperText="Some important text"
 					variant="filled"
 				/>
 				<TextField
 					id="filled-helperText"
 					label="Description"
-					defaultValue="Default Value"
+					//defaultValue="Default Value"
 					multiline
 					rows={4}
 					//helperText="Some important text"
@@ -49,14 +58,14 @@ function DrugCreationForm() {
 				<TextField
 					id="filled-helperText"
 					label="Quantity"
-					defaultValue="Default Value"
+					//defaultValue="Default Value"
 					//helperText="Some important text"
 					variant="filled"
 				/>
 				<TextField
 					id="filled-helperText"
 					label="Unit strength"
-					defaultValue="Default Value"
+					//defaultValue="Default Value"
 					//helperText="Some important text"
 					variant="filled"
 				/>
@@ -64,18 +73,16 @@ function DrugCreationForm() {
 					id="outlined-select-currency-native"
 					select
 					label="Units"
-					value={units}
+					value={selectedUnit}
 					onChange={handleChange}
-					SelectProps={{
-						native: true,
-					}}
-					helperText="Please select your currency"
-					variant="outlined"
+
+					helperText="Please select drug type"
+					variant="filled"
 				>
 					{units.map((option) => (
-						<option key={option.value} value={option.value}>
+						<MenuItem  key={option.value} value={option.value}>
 							{option.label}
-						</option>
+						</MenuItem >
 					))}
 				</TextField>
 			</FormControl>

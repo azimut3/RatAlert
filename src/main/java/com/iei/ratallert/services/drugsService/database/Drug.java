@@ -1,6 +1,7 @@
 package com.iei.ratallert.services.drugsService.database;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
@@ -21,9 +22,18 @@ public class Drug {
     private Integer quantity;
     private Unit units;
 
+    @Getter
     public enum Unit{
-        PILLS,
-        PACK,
-        DROPS
+        PILLS("Pills", "pills"),
+        PACK("Pack", "pack"),
+        DROPS("Drops", "drops");
+
+        private String label;
+        private String value;
+
+        Unit(String label, String value) {
+            this.label = label;
+            this.value = value;
+        }
     }
 }

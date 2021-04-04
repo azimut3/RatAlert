@@ -64,6 +64,7 @@ function AppMenu() {
 						>
 							<MenuItem component={Link} to={'/'} onClick={setTitleAndClose} name="Home">Home</MenuItem>
 							<MenuItem component={Link} to={'/room-history'} onClick={setTitleAndClose} name="Data charts">Data charts</MenuItem>
+							<MenuItem component={Link} to={'/drugs'} onClick={setTitleAndClose} name="Drugs">Drugs</MenuItem>
 							<MenuItem component={Link} to={'/about'} onClick={setTitleAndClose} name="About">About</MenuItem>
 
 						</Menu>
