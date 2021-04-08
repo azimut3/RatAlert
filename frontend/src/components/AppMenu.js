@@ -22,6 +22,8 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
+
+
 function AppMenu() {
 	const [title, setTitle] = useState("Home");
 
@@ -51,8 +53,9 @@ function AppMenu() {
 					<Typography variant="h4" className={classes.title}>
 						{title}
 					</Typography>
-					<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleClick}>
-						<MenuIcon aria-controls="simple-menu" aria-haspopup="true" >
+
+					<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+						<MenuIcon aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
 							Open Menu
 						</MenuIcon>
 						<Menu

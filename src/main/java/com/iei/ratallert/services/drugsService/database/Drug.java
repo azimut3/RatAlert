@@ -24,9 +24,9 @@ public class Drug {
 
     @Getter
     public enum Unit{
-        PILLS("Pills", "pills"),
-        PACK("Pack", "pack"),
-        DROPS("Drops", "drops");
+        PILLS("Pills", "PILLS"),
+        PACK("Pack", "PACK"),
+        DROPS("Drops", "DROPS");
 
         private String label;
         private String value;

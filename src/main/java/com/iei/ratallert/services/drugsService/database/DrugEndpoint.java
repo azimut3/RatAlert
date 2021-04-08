@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -29,19 +26,24 @@ public class DrugEndpoint {
     }
 
     @GetMapping("/drugUnitType")
-    public  List<DrugUnitWrapper> getDrugUnitTypes() {
+    public List<DrugUnitWrapper> getDrugUnitTypes() {
         Drug.Unit[] drugUnitList = Drug.Unit.values();
         List<DrugUnitWrapper> drugUnitWrapperList = new ArrayList<>();
-        for(var unit : drugUnitList){
+        for (var unit : drugUnitList) {
             drugUnitWrapperList.add(new DrugUnitWrapper(unit.getLabel(), unit.getValue()));
         }
         log.info(drugUnitList);
         return drugUnitWrapperList;
     }
 
+    @PostMapping("/newDrug")
+    public void createDrug(@RequestBody Drug drug) {
+        log.info(drug);
+    }
+
     @Data
     @AllArgsConstructor
-    private class DrugUnitWrapper{
+    private class DrugUnitWrapper {
         public String label;
         public String value;
     }
