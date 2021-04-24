@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function DrugCreationForm() {
+function DrugCreationForm(props) {
 	const [unitsPicklistValues, setUnitsPicklistValues] = useState([]);
 	const classes = useStyles();
 	const [newDrug, setNewDrug] = React.useState({});
@@ -28,6 +28,10 @@ function DrugCreationForm() {
 			.then(data => {
 				setUnitsPicklistValues(data);
 				setSelectedUnit(data[0].value)
+				setNewDrug({
+					...newDrug,
+					units: data[0].value
+				})
 				console.log(data)
 			});
 	}
@@ -41,14 +45,13 @@ function DrugCreationForm() {
 		console.log(newDrug)
 	};
 
-	const [open, setOpen] = React.useState(false);
-
 	const handleClose = () => {
-		setOpen(false);
+		props.onClose();
 	};
 
-	function handleSave() {
+	function handleSave(event) {
 		event.preventDefault();
+
 		console.log(newDrug)
 		let requestOptions = {
 			method: 'POST',
@@ -59,8 +62,14 @@ function DrugCreationForm() {
 			body: JSON.stringify(newDrug)
 		};
 
-		fetch('/api/drugs/v1/newDrug', requestOptions)
-			.then(response => response.json())
+		fetch('/api/drugs/v1/create', requestOptions)
+			.then(response => {
+				if(response.status === 200) {
+					console.log('response: ', response);
+					props.onSave();
+				}
+			})
+
 
 		handleClose();
 	}
@@ -68,7 +77,7 @@ function DrugCreationForm() {
 	return (
 		<div>
 			<Dialog onClose={handleClose}
-			        open={open}
+			        open={props.open}
 			        scroll="paper"
 			        aria-labelledby="scroll-dialog-title"
 			        aria-describedby="scroll-dialog-description"

@@ -57,7 +57,6 @@ function HomePage() {
 		<div className="App">
 			<div className="app-body">
 				<div>
-
 					<div>
 							<div className="conditionRowFooter">
 								Last update: {moment(roomCondition.creationDate).format("HH:mm:ss DD/MM/YYYY")}
@@ -100,6 +99,12 @@ function HomePage() {
 								</div>
 							</div>
 					</div>
+				</div>
+				<div className="wrapper">
+				<div className="h_iframe">
+					<img className="ratio" src="http://placehold.it/16x9"/>
+					<iframe src="http://94.158.155.196:83/" frameborder="0" allowfullscreen></iframe>
+				</div>
 				</div>
 
 

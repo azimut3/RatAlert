@@ -19,9 +19,10 @@ public class DrugEndpoint {
     DrugService drugService;
 
     @PostMapping("/create")
-    public String postDrug(Drug newDrug) {
+    public String postDrug(@RequestBody Drug newDrug) {
         Drug drug = newDrug;
         drugService.save(drug);
+        log.info("Saving new drug: " + newDrug);
         return "success";
     }
 
@@ -36,9 +37,19 @@ public class DrugEndpoint {
         return drugUnitWrapperList;
     }
 
-    @PostMapping("/newDrug")
-    public void createDrug(@RequestBody Drug drug) {
-        log.info(drug);
+    @GetMapping("/drugList")
+    public List<Drug> getDrugList() {
+        List<Drug> drugList = drugService.getAllDrugs();
+        log.info("Getting all drugs list: " + drugList);
+
+        return drugList;
+    }
+
+    @PostMapping("/delete")
+    public String createDrug(@RequestBody List<Long> idsToDelete) {
+        log.info("Ids' to Delete: " + idsToDelete);
+        drugService.deleteDrugs(idsToDelete);
+        return "success";
     }
 
     @Data
