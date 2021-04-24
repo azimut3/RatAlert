@@ -28,6 +28,10 @@ function DrugCreationForm(props) {
 			.then(data => {
 				setUnitsPicklistValues(data);
 				setSelectedUnit(data[0].value)
+				setNewDrug({
+					...newDrug,
+					units: data[0].value
+				})
 				console.log(data)
 			});
 	}
@@ -47,6 +51,7 @@ function DrugCreationForm(props) {
 
 	function handleSave(event) {
 		event.preventDefault();
+
 		console.log(newDrug)
 		let requestOptions = {
 			method: 'POST',
@@ -57,8 +62,14 @@ function DrugCreationForm(props) {
 			body: JSON.stringify(newDrug)
 		};
 
-		fetch('/api/drugs/v1/newDrug', requestOptions)
-			.then(response => response.json())
+		fetch('/api/drugs/v1/create', requestOptions)
+			.then(response => {
+				if(response.status === 200) {
+					console.log('response: ', response);
+					props.onSave();
+				}
+			})
+
 
 		handleClose();
 	}

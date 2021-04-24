@@ -100,8 +100,11 @@ function HomePage() {
 							</div>
 					</div>
 				</div>
-				<div>
-					<iframe src="http://94.158.155.196:83/" width="800px" height="800px"></iframe>
+				<div className="wrapper">
+				<div className="h_iframe">
+					<img className="ratio" src="http://placehold.it/16x9"/>
+					<iframe src="http://94.158.155.196:83/" frameborder="0" allowfullscreen></iframe>
+				</div>
 				</div>
 
 
