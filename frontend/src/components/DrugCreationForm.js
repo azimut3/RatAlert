@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function DrugCreationForm() {
+function DrugCreationForm(props) {
 	const [unitsPicklistValues, setUnitsPicklistValues] = useState([]);
 	const classes = useStyles();
 	const [newDrug, setNewDrug] = React.useState({});
@@ -41,13 +41,11 @@ function DrugCreationForm() {
 		console.log(newDrug)
 	};
 
-	const [open, setOpen] = React.useState(false);
-
 	const handleClose = () => {
-		setOpen(false);
+		props.onClose();
 	};
 
-	function handleSave() {
+	function handleSave(event) {
 		event.preventDefault();
 		console.log(newDrug)
 		let requestOptions = {
@@ -68,7 +66,7 @@ function DrugCreationForm() {
 	return (
 		<div>
 			<Dialog onClose={handleClose}
-			        open={open}
+			        open={props.open}
 			        scroll="paper"
 			        aria-labelledby="scroll-dialog-title"
 			        aria-describedby="scroll-dialog-description"

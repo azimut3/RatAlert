@@ -57,7 +57,6 @@ function HomePage() {
 		<div className="App">
 			<div className="app-body">
 				<div>
-
 					<div>
 							<div className="conditionRowFooter">
 								Last update: {moment(roomCondition.creationDate).format("HH:mm:ss DD/MM/YYYY")}
@@ -100,6 +99,9 @@ function HomePage() {
 								</div>
 							</div>
 					</div>
+				</div>
+				<div>
+					<iframe src="http://94.158.155.196:83/" width="800px" height="800px"></iframe>
 				</div>
 
 
