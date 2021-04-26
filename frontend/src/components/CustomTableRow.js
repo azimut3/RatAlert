@@ -4,15 +4,26 @@ import {
     makeStyles, TableCell, TableRow,
     withStyles
 } from "@material-ui/core";
+import {IoMdCreate} from "react-icons/all";
+import DrugCreationForm from "./DrugCreationForm";
 
 function CustomTableRow(props) {
 
     const [checkboxSelected, setCheckboxSelected] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
 
     function onCheckboxClick(event) {
         setCheckboxSelected(!checkboxSelected);
         props.onCheckboxClick(props.row.id)
         console.log("Selected record id: " + props.row.id)
+    }
+
+    function onEdit(event) {
+        props.onEdit(props.row);
+    }
+
+    function onModalClose(event) {
+        setModalOpen(false)
     }
 
     const StyledTableCell = withStyles((theme) => ({
@@ -58,8 +69,10 @@ function CustomTableRow(props) {
             <StyledTableCell align="right">{props.row.unitStrength}</StyledTableCell>
             <StyledTableCell align="right">{props.row.quantity}</StyledTableCell>
             <StyledTableCell align="right">{props.row.units}</StyledTableCell>
+            <StyledTableCell align="right">
+                <IoMdCreate size={25} onClick={onEdit}/>
+            </StyledTableCell>
         </TableRow>
-
     )
 }
 

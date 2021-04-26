@@ -9,7 +9,7 @@ import Icon from '@material-ui/core/Icon';
 import DrugCreationForm from "../components/DrugCreationForm";
 import * as PropTypes from "prop-types";
 import CustomTableRow from "../components/CustomTableRow";
-import {BsFillPlusCircleFill, IoIosAddCircle, IoIosTrash, IoMdRefresh, SiAddthis} from "react-icons/all";
+import {BsFillPlusCircleFill, IoIosAddCircle, IoIosTrash, IoMdCreate, IoMdRefresh, SiAddthis} from "react-icons/all";
 
 class StyledTableCell extends Component {
     render() {
@@ -28,6 +28,7 @@ function DrugsReview() {
     const [drugsData, setDrugsData] = useState([]);
     const [open, setOpen] = React.useState(false);
     const [selectedRows, setSelectedRows] = React.useState([]);
+    const [drug, setDrug] = React.useState([]);
 
     const getDrugsDataCallout = () => {
         fetch('/api/drugs/v1/drugList')
@@ -58,11 +59,15 @@ function DrugsReview() {
     }
 
 
-    function openDragCreationModal() {
+    function openDragCreationModal(drug) {
         setOpen(true);
+        if (drug) {
+            setDrug(drug)
+        }
     }
 
     function closeDragCreationModal() {
+        setDrug({});
         setOpen(false);
     }
 
@@ -137,38 +142,34 @@ function DrugsReview() {
                                     <StyledTableCell align="right">Quantity</StyledTableCell>
                                     <StyledTableCell align="right">Unit strength</StyledTableCell>
                                     <StyledTableCell align="right">Units</StyledTableCell>
+                                    <StyledTableCell align="right"></StyledTableCell>
                                 </TableRow>
                             </TableHead>
+                            {drugsData.length > 0 &&
                             <TableBody>
                                 {drugsData.map((row) => (
-                                    <CustomTableRow row={row} onCheckboxClick={onCheckboxClick}></CustomTableRow>
-                                    // <StyledTableRow key={row.name}>
-                                    //     <StyledTableCell component="th" scope="row">
-                                    //         <Checkbox
-                                    //             data-id={row.id}
-                                    //             indeterminate={numSelected > 0 && numSelected < rowCount}
-                                    //             checked={rowCount > 0 && numSelected === rowCount}
-                                    //             onChange={onCheckboxClick}
-                                    //             inputProps={{ 'aria-label': 'select all desserts' }}
-                                    //         />
-                                    //     </StyledTableCell>
-                                    //     <StyledTableCell component="th" scope="row">
-                                    //         {row.name}
-                                    //     </StyledTableCell>
-                                    //     <StyledTableCell align="right">{row.description}</StyledTableCell>
-                                    //     <StyledTableCell align="right">{row.unitStrength}</StyledTableCell>
-                                    //     <StyledTableCell align="right">{row.quantity}</StyledTableCell>
-                                    //     <StyledTableCell align="right">{row.units}</StyledTableCell>
-                                    // </StyledTableRow>
+                                    <CustomTableRow row={row} onCheckboxClick={onCheckboxClick}
+                                                    onEdit={openDragCreationModal}></CustomTableRow>
                                 ))}
                             </TableBody>
+                            }
+
+                            {drugsData.length === 0 &&
+                            <TableBody>
+                                <TableRow>
+                                    <TableCell colSpan={8}>
+                                        No data available
+                                    </TableCell>
+                                </TableRow>
+                            </TableBody>
+                            }
                         </Table>
                     </TableContainer>
 
                 </div>
 
                 <div>
-                    <DrugCreationForm open={open} onClose={closeDragCreationModal} onSave={onSave}></DrugCreationForm>
+                    <DrugCreationForm open={open} drug={drug} onClose={closeDragCreationModal} onSave={onSave}></DrugCreationForm>
                 </div>
             </div>
         </div>

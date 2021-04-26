@@ -51,6 +51,11 @@ function DrugCreationForm(props) {
 
 	function handleSave(event) {
 		event.preventDefault();
+		setNewDrug({
+			...newDrug,
+			// Trimming any whitespace
+			id: props.drug.id ? props.drug.id : null
+		})
 
 		console.log(newDrug)
 		let requestOptions = {
@@ -94,7 +99,7 @@ function DrugCreationForm(props) {
 								id="filled-helperText"
 								label="Name"
 								name="name"
-								//defaultValue="Default Value"
+								defaultValue={props.drug.name ? props.drug.name : ''}
 								//helperText="Some important text"
 								variant="filled"
 								onChange={handleChange}
@@ -103,7 +108,7 @@ function DrugCreationForm(props) {
 								id="filled-helperText"
 								label="Description"
 								name="description"
-								//defaultValue="Default Value"
+								defaultValue={props.drug.description ? props.drug.description : ''}
 								multiline
 								rows={4}
 								//helperText="Some important text"
@@ -114,7 +119,7 @@ function DrugCreationForm(props) {
 								id="filled-helperText"
 								label="Quantity"
 								name="quantity"
-								//defaultValue="Default Value"
+								defaultValue={props.drug.quantity ? props.drug.quantity : ''}
 								//helperText="Some important text"
 								variant="filled"
 								onChange={handleChange}
@@ -123,7 +128,7 @@ function DrugCreationForm(props) {
 								id="filled-helperText"
 								label="Unit strength"
 								name="unitStrength"
-								//defaultValue="Default Value"
+								defaultValue={props.drug.unitStrength ? props.drug.unitStrength : ''}
 								//helperText="Some important text"
 								variant="filled"
 								onChange={handleChange}
@@ -133,7 +138,7 @@ function DrugCreationForm(props) {
 								select
 								label="Units"
 								name="units"
-								value={selectedUnit}
+								value={props.drug.selectedUnit ? props.drug.selectedUnit : ''}
 								onChange={handleChange}
 
 								helperText="Please select drug type"
