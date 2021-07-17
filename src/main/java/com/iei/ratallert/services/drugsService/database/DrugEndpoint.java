@@ -21,8 +21,8 @@ public class DrugEndpoint {
     @PostMapping("/create")
     public String postDrug(@RequestBody Drug newDrug) {
         Drug drug = newDrug;
-        drugService.save(drug);
-        log.info("Saving new drug: " + newDrug);
+        //drugService.save(drug);
+        log.info("Saving new drug: " + newDrug.getName());
         return "success";
     }
 
@@ -33,14 +33,14 @@ public class DrugEndpoint {
         for (var unit : drugUnitList) {
             drugUnitWrapperList.add(new DrugUnitWrapper(unit.getLabel(), unit.getValue()));
         }
-        log.info(drugUnitList);
+        //log.info(drugUnitList);
         return drugUnitWrapperList;
     }
 
     @GetMapping("/drugList")
     public List<Drug> getDrugList() {
         List<Drug> drugList = drugService.getAllDrugs();
-        log.info("Getting all drugs list: " + drugList);
+        //log.info("Getting all drugs list: " + drugList);
 
         return drugList;
     }

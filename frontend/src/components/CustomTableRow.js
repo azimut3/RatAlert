@@ -15,7 +15,7 @@ function CustomTableRow(props) {
     function onCheckboxClick(event) {
         setCheckboxSelected(!checkboxSelected);
         props.onCheckboxClick(props.row.id)
-        console.log("Selected record id: " + props.row.id)
+        //console.log("Selected record id: " + props.row.id)
     }
 
     function onEdit(event) {

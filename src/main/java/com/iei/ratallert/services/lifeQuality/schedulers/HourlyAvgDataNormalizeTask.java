@@ -27,9 +27,6 @@ public class HourlyAvgDataNormalizeTask extends TimerTask {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:00");
         LocalDateTime curDate = LocalDateTime.now();
         log.info("Updating stats data. Current time: " + curDate);
-        //List<Stat> lastHourStatsList = hourlyStatService.getLastHourData(curDate);
-        log.info("lastHourStatsList");
-        //log.info(lastHourStatsList);
         List<Stat> statList = midHourStatService.getAllStatsSorted();
 
         Map<String, List<Stat>> dataMap = new HashMap<>();
@@ -38,9 +35,6 @@ public class HourlyAvgDataNormalizeTask extends TimerTask {
         for(var stat : statList){
             String timeRepresentation = stat.getCreationDate().format(formatter);
             if(dataMap.containsKey(timeRepresentation)){
-                log.info("Contains key");
-                log.info(stat);
-                log.info(dataMap.get(timeRepresentation));
                 dataMap.get(timeRepresentation).add(stat);
             } else {
                 var mapStatList = new ArrayList<Stat>();
@@ -59,7 +53,7 @@ public class HourlyAvgDataNormalizeTask extends TimerTask {
     }
 
     public HourlyStat normalizeHourlyStats(List<Stat> lastHourStatsList){
-        log.info("Normalizing list: " + lastHourStatsList);
+        //log.info("Normalizing list: " + lastHourStatsList);
         DescriptiveStatistics temperatureStatistics = new DescriptiveStatistics();
         DescriptiveStatistics humidityStatistics = new DescriptiveStatistics();
         DescriptiveStatistics airQualityStatistics = new DescriptiveStatistics();

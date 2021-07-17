@@ -32,7 +32,7 @@ function DrugCreationForm(props) {
 					...newDrug,
 					units: data[0].value
 				})
-				console.log(data)
+				//console.log(data)
 			});
 	}
 
@@ -42,7 +42,7 @@ function DrugCreationForm(props) {
 			// Trimming any whitespace
 			[e.target.name]: e.target.value.trim()
 		})
-		console.log(newDrug)
+		//console.log(newDrug)
 	};
 
 	const handleClose = () => {
@@ -51,13 +51,14 @@ function DrugCreationForm(props) {
 
 	function handleSave(event) {
 		event.preventDefault();
+		//console.log("props.drug ", props.drug)
 		setNewDrug({
 			...newDrug,
 			// Trimming any whitespace
 			id: props.drug.id ? props.drug.id : null
 		})
 
-		console.log(newDrug)
+		//console.log(newDrug)
 		let requestOptions = {
 			method: 'POST',
 			headers: {
@@ -70,7 +71,7 @@ function DrugCreationForm(props) {
 		fetch('/api/drugs/v1/create', requestOptions)
 			.then(response => {
 				if(response.status === 200) {
-					console.log('response: ', response);
+					//console.log('response: ', response);
 					props.onSave();
 				}
 			})
@@ -138,14 +139,14 @@ function DrugCreationForm(props) {
 								select
 								label="Units"
 								name="units"
-								value={props.drug.selectedUnit ? props.drug.selectedUnit : ''}
+								//value={props.drug.selectedUnit ? props.drug.selectedUnit : ''}
 								onChange={handleChange}
 
 								helperText="Please select drug type"
 								variant="filled"
 							>
 								{unitsPicklistValues.map((option) => (
-									<MenuItem key={option.value} value={option.value}>
+									<MenuItem key={option.value} value={props.drug.selectedUnit ? props.drug.selectedUnit : option.value}>
 										{option.label}
 									</MenuItem>
 								))}

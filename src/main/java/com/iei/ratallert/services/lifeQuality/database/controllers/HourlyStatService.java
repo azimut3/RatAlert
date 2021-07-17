@@ -16,12 +16,12 @@ public class HourlyStatService {
     HourlyStatRepository hourlyStatRepository;
 
     public void save(HourlyStat stat) {
-        log.info("Saving stat: " + stat);
+        log.info("Saving stat: " + stat.getId());
         hourlyStatRepository.saveAndFlush(stat);
     }
 
     public void saveAll(List<HourlyStat> statList) {
-        log.info("Saving stat: " + statList);
+        log.info("Saving stat list");
         hourlyStatRepository.saveAll(statList);
     }
 

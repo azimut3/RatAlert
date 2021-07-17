@@ -16,7 +16,7 @@ public class AvgStatService {
     AvgStatsRepository avgStatsRepository;
 
     public void save(Stat stat) {
-        log.info("Saving stat: " + stat);
+        log.info("Saving stat... (" + stat.getCreationDate() + ")");
         avgStatsRepository.saveAndFlush(stat);
     }
 

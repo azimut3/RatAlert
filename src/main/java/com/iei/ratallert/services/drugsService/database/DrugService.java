@@ -17,7 +17,7 @@ public class DrugService {
     DrugRepository drugRepository;
 
     public void save(Drug drug) {
-        log.info("Saving drug: " + drug);
+        log.info("Saving drug: " + drug.getName());
         drugRepository.saveAndFlush(drug);
     }
 

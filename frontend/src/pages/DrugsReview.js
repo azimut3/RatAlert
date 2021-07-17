@@ -35,7 +35,7 @@ function DrugsReview() {
             .then(response => response.json())
             .then(data => {
                 setDrugsData(data);
-                console.log(data)
+                //console.log(data)
             });
     }
 
@@ -61,7 +61,8 @@ function DrugsReview() {
 
     function openDragCreationModal(drug) {
         setOpen(true);
-        if (drug) {
+        console.log('Drug on modal open ', drug)
+        if (drug !== null && drug !== undefined) {
             setDrug(drug)
         }
     }
@@ -69,6 +70,7 @@ function DrugsReview() {
     function closeDragCreationModal() {
         setDrug({});
         setOpen(false);
+        console.log('Drug on modal close ', drug)
     }
 
     function onSave() {
@@ -86,7 +88,7 @@ function DrugsReview() {
             selectedRows.push(id)
         }
         setSelectedRows(selectedRows);
-        console.log(selectedRows)
+        //console.log(selectedRows)
     }
 
     const StyledTableCell = withStyles((theme) => ({
@@ -148,7 +150,7 @@ function DrugsReview() {
                             {drugsData.length > 0 &&
                             <TableBody>
                                 {drugsData.map((row) => (
-                                    <CustomTableRow row={row} onCheckboxClick={onCheckboxClick}
+                                    <CustomTableRow row={row} onCheckboxClick={onCheckboxClick} key={row.id}
                                                     onEdit={openDragCreationModal}></CustomTableRow>
                                 ))}
                             </TableBody>

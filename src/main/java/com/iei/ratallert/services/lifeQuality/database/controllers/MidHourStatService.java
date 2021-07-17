@@ -18,7 +18,7 @@ public class MidHourStatService {
     StatsRepository statsRepository;
 
     public void save(Stat stat) {
-        log.info("Saving stat: " + stat);
+        log.info("Saving stat...(" + stat.getCreationDate()+ ")");
         statsRepository.saveAndFlush(stat);
     }
 

@@ -31,8 +31,7 @@ public class LifeQualityDataFetchTask extends TimerTask {
             Stat curStat = new Stat(lifeQualityData);
             midHourStatService.save(curStat);
 
-            log.info("Data fetched");
-            log.info(lifeQualityData);
+            log.info("Data fetched (humidity - " + lifeQualityData.getHumidity() + " air qlt - " + lifeQualityData.getAirQualityPpm());
         } catch (RestClientException e) {
             log.error("Error on fetching data from arduino controller: " + e.getMessage() + "; " + e.getStackTrace());
         }
