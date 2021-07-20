@@ -22,6 +22,7 @@ public class RatAlertApplication {
 
     @Autowired
     LifeQualityDataFetchTask lifeQualityDataFetchTask;
+
     @Autowired
     HourlyAvgDataNormalizeTask hourlyAvgDataNormalizeTask;
 
