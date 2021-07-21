@@ -1,18 +1,15 @@
 package com.iei.ratallert.services.googleService;
 
-import com.google.actions.api.DefaultApp;
+import com.iei.ratallert.services.googleService.api.generic.GAFirstSimple;
+import com.iei.ratallert.services.googleService.api.generic.GAPrompt;
+import com.iei.ratallert.services.googleService.api.request.GARequest;
+import com.iei.ratallert.services.googleService.api.response.GAResponse;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 @Log4j2
 @RestController
@@ -22,16 +19,23 @@ public class GoogleApi {
     @Autowired
     RatAlertApp ratAlertApp;
 
-    @PostMapping(value = "/home", consumes = MediaType.APPLICATION_JSON_VALUE, produces = { "application/json" })
+    @PostMapping(value = "/home", consumes = MediaType.APPLICATION_JSON_VALUE, produces = {"application/json"})
     @ResponseBody
-    public String testIncome(@RequestBody String requestBody,  @RequestHeader Map<String, String> headers) {
-        try {
-            //log.info(requestBody);
-            return ratAlertApp.handleRequest(requestBody, headers).get();
-        } catch (InterruptedException | ExecutionException e) {
-            log.error(e);
-            return e.toString();
+    public GAResponse testIncome(@RequestBody GARequest request, @RequestHeader Map<String, String> headers) {
+        String intentName = request.getHandler().getName();
+
+        switch (intentName) {
+            case "home_conditions":
+                return ratAlertApp.homeConditions();
+            default:
+                return  GAResponse.builder()
+                        .prompt(
+                                GAPrompt.builder()
+                                        .firstSimple(GAFirstSimple.builder()
+                                                .speech("No such intent found").build())
+                                        .build()).build();
         }
+
     }
 
     @GetMapping("/")
