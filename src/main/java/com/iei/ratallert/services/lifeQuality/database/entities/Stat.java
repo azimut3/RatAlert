@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.apache.commons.math3.util.Precision;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -34,9 +35,9 @@ public class Stat {
     }
 
     public Stat(LifeQualitySensorDataModel lifeQualityData) {
-        this.roomHumidity = lifeQualityData.getHumidity();
-        this.roomTemperature = lifeQualityData.getTemperature();
-        this.roomAirQualityPpmValue = lifeQualityData.getAirQualityPpm();
+        this.roomHumidity = Precision.round(lifeQualityData.getHumidity(), 0);
+        this.roomTemperature = Precision.round(lifeQualityData.getTemperature(), 1);
+        this.roomAirQualityPpmValue = Precision.round(lifeQualityData.getAirQualityPpm(), 0);
         this.roomAirQualityLevel = getAirQualityLevel(roomAirQualityPpmValue);
 
         if(creationDate == null){
