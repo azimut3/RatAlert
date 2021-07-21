@@ -26,7 +26,7 @@ public class GoogleApi {
     @ResponseBody
     public String testIncome(@RequestBody String requestBody,  @RequestHeader Map<String, String> headers) {
         try {
-            log.info(requestBody);
+            //log.info(requestBody);
             return ratAlertApp.handleRequest(requestBody, headers).get();
         } catch (InterruptedException | ExecutionException e) {
             log.error(e);

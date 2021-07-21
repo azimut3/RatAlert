@@ -1,9 +1,6 @@
 package com.iei.ratallert.services.googleService;
 
-import com.google.actions.api.ActionRequest;
-import com.google.actions.api.ActionResponse;
-import com.google.actions.api.DialogflowApp;
-import com.google.actions.api.ForIntent;
+import com.google.actions.api.*;
 import com.google.actions.api.response.ResponseBuilder;
 import com.google.api.services.actions_fulfillment.v2.model.User;
 import com.iei.ratallert.services.lifeQuality.database.entities.Stat;
@@ -16,7 +13,7 @@ import java.util.ResourceBundle;
 
 @Log4j2
 @Service
-public class RatAlertApp extends DialogflowApp {
+public class RatAlertApp extends ActionsSdkApp {
     @ForIntent("home_conditions")
     public ActionResponse homeConditions(ActionRequest request) {
         log.info("home_conditions intent start.");
@@ -36,7 +33,7 @@ public class RatAlertApp extends DialogflowApp {
 
         responseBuilder.add(homeCondition);
 
-        log.info("Welcome intent end.");
+        log.info("home_conditions intent end.");
         return responseBuilder.build();
     }
 
