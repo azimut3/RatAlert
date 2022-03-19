@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 
 @Log4j2
@@ -21,19 +22,22 @@ public class ChartDataEndpoint {
 
     @GetMapping("/past24HourData")
     public List<HourlyStat> getPast24HourData(Model model) {
-        List<HourlyStat> hourlyStats = hourlyStatService.findAllBetweenDates(LocalDateTime.now().minusDays(1), LocalDateTime.now());
+        List<HourlyStat> hourlyStats = hourlyStatService.findAllBetweenDates(LocalDateTime.now(ZoneOffset.UTC).minusDays(1),
+                LocalDateTime.now(ZoneOffset.UTC));
         return hourlyStats;
     }
 
     @GetMapping("/past3DaysData")
     public List<HourlyStat> getPast3DaysData(Model model) {
-        List<HourlyStat> hourlyStats = hourlyStatService.findAllBetweenDates(LocalDateTime.now().minusDays(3), LocalDateTime.now());
+        List<HourlyStat> hourlyStats = hourlyStatService.findAllBetweenDates(LocalDateTime.now(ZoneOffset.UTC).minusDays(3),
+                LocalDateTime.now(ZoneOffset.UTC));
         return hourlyStats;
     }
 
     @GetMapping("/pastWeekData")
     public List<HourlyStat> getPastWeekData(Model model) {
-        List<HourlyStat> hourlyStats = hourlyStatService.findAllBetweenDates(LocalDateTime.now().minusDays(7), LocalDateTime.now());
+        List<HourlyStat> hourlyStats = hourlyStatService.findAllBetweenDates(LocalDateTime.now(ZoneOffset.UTC).minusDays(7),
+                LocalDateTime.now(ZoneOffset.UTC));
         return hourlyStats;
     }
 }

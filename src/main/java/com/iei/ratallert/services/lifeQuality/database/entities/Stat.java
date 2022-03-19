@@ -9,6 +9,7 @@ import org.apache.commons.math3.util.Precision;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 @Entity
 @Data
@@ -41,7 +42,7 @@ public class Stat {
         this.roomAirQualityLevel = getAirQualityLevel(roomAirQualityPpmValue);
 
         if(creationDate == null){
-            creationDate = LocalDateTime.now();
+            creationDate = LocalDateTime.now(ZoneOffset.UTC);
         }
     }
 

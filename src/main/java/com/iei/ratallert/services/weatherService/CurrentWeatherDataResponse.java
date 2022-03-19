@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,7 +67,7 @@ public class CurrentWeatherDataResponse {
     private LocalDateTime fetchedDate;
 
     public CurrentWeatherDataResponse(){
-        this.fetchedDate = LocalDateTime.now();
+        this.fetchedDate = LocalDateTime.now(ZoneOffset.UTC);
     }
 
     @JsonIgnore

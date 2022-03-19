@@ -163,8 +163,9 @@ function HomeCharts() {
 				let humidityList = [];
 				let airQualityList = [];
 				data.map(stat => {
-					let datetime = moment(stat.creationDate)
-					statTimeStampsList.push(datetime.format('DD/MM HH:mm'));
+					let datetime = moment.utc(stat.creationDate)
+					console.log('datetime ' + datetime)
+					statTimeStampsList.push(datetime.local().format('DD/MM HH:mm'));
 					temperatureList.push(stat.roomTemperature);
 					humidityList.push(stat.roomHumidity);
 					airQualityList.push(stat.roomAirQualityPpmValue);

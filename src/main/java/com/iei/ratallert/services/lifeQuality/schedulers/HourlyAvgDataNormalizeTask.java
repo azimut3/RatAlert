@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -25,7 +26,7 @@ public class HourlyAvgDataNormalizeTask extends TimerTask {
     @Override
     public void run() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:00");
-        LocalDateTime curDate = LocalDateTime.now();
+        LocalDateTime curDate = LocalDateTime.now(ZoneOffset.UTC);
         log.info("Updating stats data. Current time: " + curDate);
         List<Stat> statList = midHourStatService.getAllStatsSorted();
 

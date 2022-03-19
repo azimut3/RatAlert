@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 @Log4j2
 @RestController
@@ -19,7 +20,7 @@ public class WeatherEndpoint {
         if(responseInstance == null){
             responseInstance = OpenWeatherService.getCurrentForecast();
         }
-        if((responseInstance.getFetchedDate().getMinute() + LocalDateTime.now().getMinute()) >= 10){
+        if((responseInstance.getFetchedDate().getMinute() + LocalDateTime.now(ZoneOffset.UTC).getMinute()) >= 10){
             responseInstance = OpenWeatherService.getCurrentForecast();
         }
 
